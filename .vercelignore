@@ -1,0 +1,3 @@
+# Exclude huge source MOV (~300MB); deployed hero uses yamuna-hero.mp4 instead.
+**/*.mov
+node_modules

@@ -12,8 +12,8 @@ export const experienceInteractiveGallerySlides = [
     subtitle: 'Ubatuba · Brazil',
     description:
       'A weave of Ayurvedic living, ocean time, rainforest immersion, and evenings designed for depth—always with room to breathe.',
-    backgroundImage: '/images/long%20boarding%20suef.jpg',
-    thumbnailImage: '/images/long%20boarding%20suef.jpg',
+    backgroundImage: '/images/ubtatuba%20first%20card%20.jpg',
+    thumbnailImage: '/images/ubtatuba%20first%20card%20.jpg',
   },
   {
     id: 'experience-ayurveda',

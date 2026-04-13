@@ -1,556 +1,243 @@
 /**
- * Retreat Details Page - Standalone page for "Learn More About the Retreat"
- * Contains: Mission, Location, Facilitators, Schedule, and Who It's For sections
+ * About page (`/learn-more`) — origins of Yamuna Retreats through Giovanna’s path.
+ * Editorial layout with inline photography (replace image URLs in `PHOTOS` below).
  */
 import { useEffect } from 'react'
 import FadeIn from '../components/FadeIn'
 
+/** Replace with your own files under /public/images/ … */
+const GIO_PORTRAIT = encodeURI('/images/gio nature!.jpeg')
+
+const PHOTOS = {
+  /** Main portrait — swap `GIO_PORTRAIT` path if your filename differs. */
+  portrait: GIO_PORTRAIT,
+  /** Placeholder coastal / interior shots — swap for your photography. */
+  handsHerbs:
+    'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=1400&q=82',
+  forestLight:
+    'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=1400&q=82',
+  shoreQuiet:
+    'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1800&q=82',
+  stillBowl:
+    'https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&w=1200&q=82',
+  journalLight:
+    'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=1400&q=82',
+}
+
 export default function RetreatDetailsPage() {
   useEffect(() => {
-    // Smooth scroll for anchor links within this page
     const handleAnchorClick = (e) => {
       const href = e.target.getAttribute('href')
       if (href && href.startsWith('#')) {
         e.preventDefault()
         const target = document.querySelector(href)
-        if (target) {
-          target.scrollIntoView({ behavior: 'smooth', block: 'start' })
-        }
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' })
       }
     }
-
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
       anchor.addEventListener('click', handleAnchorClick)
     })
-
     return () => {
-      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
         anchor.removeEventListener('click', handleAnchorClick)
       })
     }
   }, [])
 
   return (
-    <>
-      {/* SECTION 1 - Intro Hero: Mission & Inspiration - Vertically centered layout - Mobile optimized */}
+    <article className="bg-[#FAF8F4] pb-4 pt-20 text-gray-800 sm:pt-24">
+      {/* Hero */}
       <section
-        id="mission"
-        className="min-h-[50vh] sm:min-h-[60vh] md:min-h-[70vh] flex flex-col justify-center py-12 sm:py-16 md:py-24 lg:py-32 px-4 sm:px-6 md:px-8 lg:px-16 bg-white scroll-mt-20"
+        id="top"
+        className="scroll-mt-20 relative overflow-hidden border-b border-deep-green/[0.07]"
       >
-        <div className="max-w-4xl mx-auto text-center">
-          <FadeIn>
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-deep-green mb-5 sm:mb-6 md:mb-8 tracking-tight">
-              A Retreat Created as a Sacred Pause
-            </h1>
+        <div
+          className="pointer-events-none absolute -left-32 top-1/4 h-72 w-72 -translate-y-1/2 rounded-full bg-seafoam/45 blur-3xl"
+          aria-hidden
+        />
+        <div
+          className="pointer-events-none absolute -right-24 top-0 h-[min(50vw,380px)] w-[min(50vw,380px)] rounded-full bg-hero-gold/[0.14] blur-3xl"
+          aria-hidden
+        />
+        <div className="relative mx-auto grid max-w-6xl items-center gap-12 px-4 py-16 sm:px-6 sm:py-20 md:gap-14 md:px-10 md:py-24 lg:grid-cols-2 lg:gap-16 lg:px-12 lg:py-28">
+          <div>
+            <FadeIn>
+              <p className="mb-5 flex flex-wrap items-center justify-center gap-3 font-sans text-[11px] font-semibold uppercase tracking-[0.35em] text-terracotta sm:justify-start sm:text-xs">
+                <span className="h-px w-10 bg-hero-gold/80 sm:w-14" aria-hidden />
+                Origins
+              </p>
+              <h1 className="text-center font-serif text-[clamp(2.15rem,5.5vw,3.85rem)] font-bold leading-[1.06] tracking-tight text-deep-green sm:text-left">
+                How Giovanna began Yamuna Retreats
+              </h1>
+              <p className="mx-auto mt-8 max-w-xl text-center font-body text-lg leading-[1.75] text-gray-600 sm:mx-0 sm:text-left sm:text-xl">
+                This page is not a brochure—it is the thread of how one practice deepened into a name, a shoreline, and
+                a way of holding others with care.
+              </p>
+              <a
+                href="#thread"
+                className="mt-10 flex min-h-[44px] items-center justify-center gap-2 font-sans text-sm font-semibold uppercase tracking-[0.14em] text-deep-green transition hover:text-terracotta-dark sm:justify-start"
+              >
+                Read the story
+                <span className="text-lg leading-none" aria-hidden>
+                  ↓
+                </span>
+              </a>
+            </FadeIn>
+          </div>
+          <FadeIn delay={120}>
+            <figure className="mx-auto max-w-md overflow-hidden rounded-[1.75rem] shadow-[0_28px_60px_-14px_rgba(15,49,35,0.28)] ring-1 ring-deep-green/[0.08] sm:max-w-none lg:mx-0">
+              <img
+                src={PHOTOS.portrait}
+                alt="Giovanna in nature — founder of Yamuna Retreats"
+                className="aspect-[4/5] w-full object-cover object-center sm:aspect-[3/4]"
+                width={900}
+                height={1125}
+                decoding="async"
+              />
+              <figcaption className="border-t border-deep-green/[0.08] bg-white/95 px-5 py-3.5 text-center font-sans text-[11px] uppercase tracking-[0.18em] text-gray-600 sm:text-xs">
+                Giovanna — founder, Yamuna Retreats
+              </figcaption>
+            </figure>
           </FadeIn>
+        </div>
+      </section>
 
+      {/* Thread */}
+      <section
+        id="thread"
+        className="scroll-mt-20 border-b border-deep-green/[0.06] bg-white px-4 py-16 sm:px-6 sm:py-20 md:px-10 md:py-24 lg:px-14"
+      >
+        <div className="mx-auto max-w-[42rem]">
+          <FadeIn>
+            <p className="mb-4 flex items-center justify-center gap-3 font-sans text-[11px] font-semibold uppercase tracking-[0.28em] text-gold sm:justify-start">
+              <span className="h-px w-8 bg-hero-gold/70" aria-hidden />
+              The thread
+            </p>
+            <h2 className="text-center font-serif text-3xl font-bold tracking-tight text-deep-green sm:text-left sm:text-4xl md:text-[2.35rem]">
+              Before the name
+            </h2>
+            <div className="mt-10 space-y-7 font-body text-base leading-[1.75] text-gray-700 sm:text-lg">
+              <p className="border-l-2 border-hero-gold/45 pl-6 sm:pl-8">
+                Giovanna&apos;s work grew from Ayurveda, women&apos;s health, and the quiet discipline of showing up
+                for the body when it whispers instead of shouts. Long before there was a logo, there were kitchens,
+                consultation rooms, and circles where she translated ancient maps into something livable for modern
+                nervous systems.
+              </p>
+              <p>
+                Yamuna Retreats emerged when that work needed a wider vessel—not louder marketing, but a clearer home
+                for her voice: a place where sound, ritual, nourishment, and landscape could sit together without rushing
+                anyone to perform wellness for a camera.
+              </p>
+            </div>
+          </FadeIn>
+        </div>
+        <div className="mx-auto mt-16 grid max-w-6xl gap-5 sm:grid-cols-2 sm:gap-7">
+          <FadeIn delay={80}>
+            <figure className="group overflow-hidden rounded-[1.35rem] shadow-[0_14px_40px_-18px_rgba(15,49,35,0.2)] ring-1 ring-deep-green/[0.06] transition-shadow duration-300 hover:shadow-[0_20px_48px_-16px_rgba(15,49,35,0.24)]">
+              <img src={PHOTOS.handsHerbs} alt="" className="aspect-[4/3] w-full object-cover" loading="lazy" />
+            </figure>
+          </FadeIn>
+          <FadeIn delay={140}>
+            <figure className="group overflow-hidden rounded-[1.35rem] shadow-[0_14px_40px_-18px_rgba(15,49,35,0.2)] ring-1 ring-deep-green/[0.06] transition-shadow duration-300 hover:shadow-[0_20px_48px_-16px_rgba(15,49,35,0.24)]">
+              <img src={PHOTOS.forestLight} alt="" className="aspect-[4/3] w-full object-cover" loading="lazy" />
+            </figure>
+          </FadeIn>
+        </div>
+      </section>
+
+      {/* Quote band */}
+      <section className="relative overflow-hidden border-b border-white/10 bg-deep-green text-white">
+        <div
+          className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_90%_55%_at_20%_30%,rgba(201,162,39,0.14),transparent_50%)]"
+          aria-hidden
+        />
+        <div className="relative mx-auto max-w-6xl px-4 py-16 sm:px-6 md:px-10 md:py-20 lg:px-12 lg:py-24">
+          <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+            <FadeIn>
+              <figure className="overflow-hidden rounded-[1.35rem] shadow-[0_24px_50px_-12px_rgba(0,0,0,0.35)] ring-1 ring-white/15">
+                <img src={PHOTOS.stillBowl} alt="" className="aspect-[4/3] w-full object-cover" loading="lazy" />
+              </figure>
+            </FadeIn>
+            <FadeIn delay={100}>
+              <blockquote className="font-serif text-[clamp(1.5rem,3.5vw,2.15rem)] font-medium italic leading-snug text-white/95">
+                &ldquo;I did not name Yamuna Retreats to sound exotic—I named it so the work could breathe with me when I
+                crossed oceans and seasons.&rdquo;
+              </blockquote>
+              <div className="mt-8 h-px w-16 bg-hero-gold/60" aria-hidden />
+              <p className="mt-6 font-sans text-xs font-semibold uppercase tracking-[0.22em] text-white/55">— Giovanna</p>
+            </FadeIn>
+          </div>
+        </div>
+      </section>
+
+      {/* Shore */}
+      <section
+        id="shore"
+        className="scroll-mt-20 border-b border-deep-green/[0.06] px-4 py-16 sm:px-6 sm:py-20 md:px-10 md:py-24 lg:px-14"
+      >
+        <div className="mx-auto max-w-6xl">
+          <FadeIn>
+            <p className="mb-4 flex items-center justify-center gap-3 font-sans text-[11px] font-semibold uppercase tracking-[0.28em] text-gold sm:justify-start">
+              <span className="h-px w-8 bg-hero-gold/70" aria-hidden />
+              Place
+            </p>
+            <h2 className="text-center font-serif text-3xl font-bold tracking-tight text-deep-green sm:text-left sm:text-4xl md:text-[2.35rem]">
+              Why the Atlantic coast
+            </h2>
+            <p className="mx-auto mt-8 max-w-[42rem] text-center font-body text-base leading-[1.75] text-gray-700 sm:mx-0 sm:text-left sm:text-lg">
+              Brazil&apos;s shoreline kept calling her back—Ubatuba, Itamambuca, the overlap of rainforest and salt. The
+              humidity, the sound of the sea, and the slower civic rhythm matched what she was already asking of
+              herself: fewer shortcuts, more honesty with the body. Yamuna Retreats found its footing there because the
+              geography refused to let the work become abstract.
+            </p>
+          </FadeIn>
           <FadeIn delay={100}>
-            <p className="text-base sm:text-lg md:text-xl text-gray-700 font-body leading-relaxed mb-5 sm:mb-6 md:mb-8">
-              Sacred Shores was born from a simple longing: to create a gentle pause
-              in the middle of modern life, where women can rest, remember themselves,
-              and be held by nature. This retreat weaves together Ayurveda, yoga,
-              conscious cooking, mantra, and the ocean so your body, mind, and heart
-              can finally move in the same rhythm again.
-            </p>
-          </FadeIn>
-
-          <FadeIn delay={200}>
-            <p className="text-sm sm:text-base md:text-lg text-gray-600 font-body leading-relaxed mb-6 sm:mb-8 md:mb-10">
-              Our mission is to offer more than a getaway. Sacred Shores is an
-              immersive experience designed to nourish you on every layer: physical,
-              emotional, and spiritual. Every practice, meal, and circle is crafted
-              with intention, so you leave not just refreshed, but realigned with the
-              woman you came here to be.
-            </p>
-          </FadeIn>
-
-          <FadeIn delay={300}>
-            <a
-              href="#location"
-              className="inline-block text-deep-green font-semibold hover:opacity-80 transition-opacity duration-200 focus:outline-none focus:ring-2 focus:ring-deep-green focus:ring-offset-2 rounded py-2 min-h-[44px] flex items-center justify-center"
-            >
-              Scroll to Learn More ↓
-            </a>
+            <figure className="mt-14 overflow-hidden rounded-[1.65rem] shadow-[0_22px_55px_-18px_rgba(15,49,35,0.22)] ring-1 ring-deep-green/[0.07]">
+              <img
+                src={PHOTOS.shoreQuiet}
+                alt=""
+                className="max-h-[min(72vh,680px)] w-full object-cover object-center"
+                loading="lazy"
+              />
+            </figure>
           </FadeIn>
         </div>
       </section>
 
-      {/* SECTION 2 - Why Floripa: About the Location - Mobile optimized */}
-      <section
-        id="location"
-        className="py-12 sm:py-16 md:py-24 lg:py-32 px-4 sm:px-6 md:px-8 lg:px-16 bg-sage/20 scroll-mt-20"
-      >
-        <div className="max-w-7xl mx-auto">
-          <FadeIn>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-deep-green mb-6 sm:mb-8 md:mb-10 text-center tracking-tight">
-              Why Florianópolis?
-            </h2>
-          </FadeIn>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 md:gap-12 items-center">
-            {/* Left: Text Content */}
-            <FadeIn delay={100}>
-              <div>
-                <p className="text-base sm:text-lg md:text-xl text-gray-700 font-body leading-relaxed mb-5 sm:mb-6 md:mb-8">
-                  Florianópolis, lovingly called Floripa, is an island city in southern
-                  Brazil known for its turquoise waters, lush hills, and relaxed surf
-                  culture. It's a place where life naturally slows down. Mornings begin
-                  with ocean breezes, afternoons are filled with light, and evenings
-                  arrive with soft skies and the sound of waves.
+      {/* Today */}
+      <section className="border-b border-deep-green/[0.06] bg-gradient-to-b from-sand/90 to-[#EDE9E1] px-4 py-16 sm:px-6 sm:py-20 md:px-10 md:py-24 lg:px-14">
+        <div className="mx-auto grid max-w-6xl items-start gap-12 lg:grid-cols-12 lg:gap-14">
+          <div className="lg:col-span-5">
+            <FadeIn>
+              <figure className="overflow-hidden rounded-[1.35rem] shadow-[0_18px_48px_-16px_rgba(15,49,35,0.18)] ring-1 ring-deep-green/[0.06]">
+                <img src={PHOTOS.journalLight} alt="" className="aspect-[3/4] w-full object-cover" loading="lazy" />
+              </figure>
+            </FadeIn>
+          </div>
+          <div className="lg:col-span-7">
+            <FadeIn delay={80}>
+              <p className="mb-4 flex items-center gap-3 font-sans text-[11px] font-semibold uppercase tracking-[0.28em] text-terracotta">
+                <span className="h-px w-8 bg-hero-gold/70" aria-hidden />
+                Now
+              </p>
+              <h2 className="font-serif text-3xl font-bold tracking-tight text-deep-green sm:text-4xl md:text-[2.35rem]">
+                What Yamuna Retreats is today
+              </h2>
+              <div className="mt-10 space-y-7 font-body text-base leading-[1.75] text-gray-700 sm:text-lg">
+                <p>
+                  Today it is the umbrella for everything she has learned to steward well: Ayurvedic care, sound, shared
+                  meals, writing, silence, and the stubborn belief that beauty counts as medicine. It is still small by
+                  design—anchored in relationship, not volume.
                 </p>
-
-                <div className="space-y-4 sm:space-y-4 md:space-y-5">
-                  <div>
-                    <h3 className="font-semibold text-deep-green mb-2 text-base sm:text-lg">
-                      Island energy
-                    </h3>
-                    <p className="text-sm sm:text-base text-gray-700 font-body leading-relaxed">
-                      Surrounded by water and nature, Floripa feels like a gentle reset
-                      for your nervous system.
-                    </p>
-                  </div>
-
-                  <div>
-                    <h3 className="font-semibold text-deep-green mb-2 text-base sm:text-lg">
-                      Beaches & trails
-                    </h3>
-                    <p className="text-sm sm:text-base text-gray-700 font-body leading-relaxed">
-                      Golden beaches, coastal walks, and viewpoints where you can watch
-                      the sunrise or sunset in silence.
-                    </p>
-                  </div>
-
-                  <div>
-                    <h3 className="font-semibold text-deep-green mb-2 text-base sm:text-lg">
-                      Wellness-friendly culture
-                    </h3>
-                    <p className="text-sm sm:text-base text-gray-700 font-body leading-relaxed">
-                      Yoga, surf, healthy food, and conscious communities are already
-                      part of the island's heartbeat.
-                    </p>
-                  </div>
-
-                  <div>
-                    <h3 className="font-semibold text-deep-green mb-2 text-base sm:text-lg">
-                      Our retreat space
-                    </h3>
-                    <p className="text-sm sm:text-base text-gray-700 font-body leading-relaxed">
-                      A cozy guest house close to the beach, with shared and private
-                      rooms, an open kitchen, and spaces for yoga, circles, and kirtan.
-                    </p>
-                  </div>
-                </div>
-
-                <p className="mt-6 sm:mt-8 text-xs sm:text-sm md:text-base text-gray-600 font-body italic">
-                  Located on the island of Florianópolis, Brazil, approximately X
-                  minutes from the nearest airport.
+                <p className="rounded-2xl border border-deep-green/[0.08] bg-white/60 px-6 py-5 text-[15px] leading-relaxed shadow-sm sm:px-7 sm:py-6">
+                  If you came here to understand the why before anything else, you are in the right place. The rest of
+                  the site carries the practical details; this page holds the story of how the name met the shore.
                 </p>
               </div>
             </FadeIn>
-
-            {/* Right: Images */}
-            <FadeIn delay={200}>
-              <div className="space-y-4 sm:space-y-5 md:space-y-6">
-                <div className="rounded-3xl overflow-hidden h-56 sm:h-64 md:h-80">
-                  <img
-                    src="/images/waves.jpg"
-                    alt="Beautiful beach and turquoise waters of Florianópolis"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <div className="rounded-3xl overflow-hidden h-56 sm:h-64 md:h-80">
-                  <img
-                    src="/images/long%20boarding%20suef.jpg"
-                    alt="Surfing and longboarding on the beaches of Floripa"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-              </div>
-            </FadeIn>
           </div>
         </div>
       </section>
-
-      {/* SECTION 3 - Meet Your Facilitators - Mobile optimized */}
-      <section
-        id="facilitators"
-        className="py-12 sm:py-16 md:py-24 lg:py-32 px-4 sm:px-6 md:px-8 lg:px-16 bg-white scroll-mt-20"
-      >
-        <div className="max-w-7xl mx-auto">
-          <FadeIn>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-deep-green mb-4 sm:mb-4 md:mb-6 text-center tracking-tight">
-              Meet Your Facilitators
-            </h2>
-            <p className="text-base sm:text-lg md:text-xl text-gray-700 text-center font-body mb-10 sm:mb-12 md:mb-16 max-w-3xl mx-auto">
-              Each facilitator brings her own medicine, rooted in years of practice,
-              study, and lived experience.
-            </p>
-          </FadeIn>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6 md:gap-8">
-            {/* Facilitator 1 - Giovanna */}
-            <FadeIn delay={100}>
-              <div className="bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300 border border-gray-100">
-                <div className="h-56 sm:h-64 overflow-hidden">
-                  <img
-                    src="/images/gio%20for%20website.jpeg"
-                    alt="Giovanna - Ayurvedic Guide & Space Holder"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <div className="p-5 sm:p-6 md:p-8">
-                  <h3 className="text-lg sm:text-xl md:text-2xl font-serif font-bold text-deep-green mb-2">
-                    Giovanna
-                  </h3>
-                  <p className="text-xs sm:text-sm text-gold font-semibold mb-3 sm:mb-4">
-                    Ayurvedic Guide & Space Holder
-                  </p>
-                  <p className="text-gray-700 font-body text-xs sm:text-sm md:text-base leading-relaxed mb-5 sm:mb-6">
-                    Giovanna is an Ayurvedic therapist and women's wellness guide,
-                    trained in Brazil and abroad. She specializes in helping women
-                    regulate their digestion, hormones, and nervous system through
-                    simple daily rituals.
-                  </p>
-                  <ul className="space-y-2">
-                    <li className="flex items-start gap-2 text-sm text-gray-700">
-                      <span className="text-gold mt-1">•</span>
-                      <span>Ayurveda for daily life</span>
-                    </li>
-                    <li className="flex items-start gap-2 text-sm text-gray-700">
-                      <span className="text-gold mt-1">•</span>
-                      <span>Women's health & cyclical living</span>
-                    </li>
-                    <li className="flex items-start gap-2 text-sm text-gray-700">
-                      <span className="text-gold mt-1">•</span>
-                      <span>Self-care rituals & abhyanga</span>
-                    </li>
-                    <li className="flex items-start gap-2 text-sm text-gray-700">
-                      <span className="text-gold mt-1">•</span>
-                      <span>Guided reflection & integration circles</span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </FadeIn>
-
-            {/* Facilitator 2 - Laura */}
-            <FadeIn delay={200}>
-              <div className="bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300 border border-gray-100">
-                <div className="h-56 sm:h-64 bg-sage/30 flex items-center justify-center">
-                  <div className="text-5xl sm:text-6xl">🍃</div>
-                </div>
-                <div className="p-5 sm:p-6 md:p-8">
-                  <h3 className="text-lg sm:text-xl md:text-2xl font-serif font-bold text-deep-green mb-2">
-                    Laura
-                  </h3>
-                  <p className="text-xs sm:text-sm text-gold font-semibold mb-3 sm:mb-4">
-                    Conscious Cooking & Kitchen Rituals
-                  </p>
-                  <p className="text-gray-700 font-body text-xs sm:text-sm md:text-base leading-relaxed mb-5 sm:mb-6">
-                    Laura is a plant-based chef who believes food is one of our most
-                    intimate forms of prayer. Her cooking is colorful, nourishing, and
-                    full of intention.
-                  </p>
-                  <ul className="space-y-2">
-                    <li className="flex items-start gap-2 text-sm text-gray-700">
-                      <span className="text-gold mt-1">•</span>
-                      <span>Plant-based cooking & menu design</span>
-                    </li>
-                    <li className="flex items-start gap-2 text-sm text-gray-700">
-                      <span className="text-gold mt-1">•</span>
-                      <span>Cooking with intention & gratitude</span>
-                    </li>
-                    <li className="flex items-start gap-2 text-sm text-gray-700">
-                      <span className="text-gold mt-1">•</span>
-                      <span>Plate and table organization</span>
-                    </li>
-                    <li className="flex items-start gap-2 text-sm text-gray-700">
-                      <span className="text-gold mt-1">•</span>
-                      <span>Gentle guidance for beginners</span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </FadeIn>
-
-            {/* Facilitator 3 - Gio (Longboard) */}
-            <FadeIn delay={300}>
-              <div className="bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300 border border-gray-100">
-                <div className="h-56 sm:h-64 bg-sage/30 flex items-center justify-center">
-                  <div className="text-5xl sm:text-6xl">🏄</div>
-                </div>
-                <div className="p-5 sm:p-6 md:p-8">
-                  <h3 className="text-lg sm:text-xl md:text-2xl font-serif font-bold text-deep-green mb-2">
-                    Gio
-                  </h3>
-                  <p className="text-xs sm:text-sm text-gold font-semibold mb-3 sm:mb-4">
-                    Longboard & Sea Connection
-                  </p>
-                  <p className="text-gray-700 font-body text-xs sm:text-sm md:text-base leading-relaxed mb-5 sm:mb-6">
-                    Gio introduces you to the joy of moving with
-                    the ocean. Whether you're stepping on a board for the first time or
-                    already comfortable in the water, her focus is on safety,
-                    playfulness, and confidence.
-                  </p>
-                  <ul className="space-y-2">
-                    <li className="flex items-start gap-2 text-sm text-gray-700">
-                      <span className="text-gold mt-1">•</span>
-                      <span>Beginner-friendly longboard instruction</span>
-                    </li>
-                    <li className="flex items-start gap-2 text-sm text-gray-700">
-                      <span className="text-gold mt-1">•</span>
-                      <span>Ocean safety & confidence</span>
-                    </li>
-                    <li className="flex items-start gap-2 text-sm text-gray-700">
-                      <span className="text-gold mt-1">•</span>
-                      <span>Embodied connection with water</span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </FadeIn>
-
-            {/* Facilitator 4 - Kirtan Crew */}
-            <FadeIn delay={400}>
-              <div className="bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300 border border-gray-100">
-                <div className="h-56 sm:h-64 bg-sage/30 flex items-center justify-center">
-                  <div className="text-5xl sm:text-6xl">🎵</div>
-                </div>
-                <div className="p-5 sm:p-6 md:p-8">
-                  <h3 className="text-lg sm:text-xl md:text-2xl font-serif font-bold text-deep-green mb-2">
-                    Kirtan Crew
-                  </h3>
-                  <p className="text-xs sm:text-sm text-gold font-semibold mb-3 sm:mb-4">
-                    Mantra, Kirtan & Sound
-                  </p>
-                  <p className="text-gray-700 font-body text-xs sm:text-sm md:text-base leading-relaxed mb-5 sm:mb-6">
-                    Holding space through mantra and music, the kirtan crew creates
-                    evening kirtans and OM meditations. With a deep love for sacred
-                    sound, they create a welcoming environment where you can sing,
-                    listen, or simply rest in the vibration.
-                  </p>
-                  <ul className="space-y-2">
-                    <li className="flex items-start gap-2 text-sm text-gray-700">
-                      <span className="text-gold mt-1">•</span>
-                      <span>Kirtan & mantra meditation</span>
-                    </li>
-                    <li className="flex items-start gap-2 text-sm text-gray-700">
-                      <span className="text-gold mt-1">•</span>
-                      <span>Gentle sound journeys</span>
-                    </li>
-                    <li className="flex items-start gap-2 text-sm text-gray-700">
-                      <span className="text-gold mt-1">•</span>
-                      <span>Creating safe, devotional space</span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </FadeIn>
-          </div>
-        </div>
-      </section>
-
-      {/* SECTION 4 - Retreat Flow: Schedule & Itinerary - Mobile optimized */}
-      <section
-        id="schedule"
-        className="py-12 sm:py-16 md:py-24 lg:py-32 px-4 sm:px-6 md:px-8 lg:px-16 bg-sand scroll-mt-20"
-      >
-        <div className="max-w-7xl mx-auto">
-          <FadeIn>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-deep-green mb-4 sm:mb-4 md:mb-6 text-center tracking-tight">
-              The Flow of the Weekend
-            </h2>
-            <p className="text-base sm:text-lg md:text-xl text-gray-700 text-center font-body mb-10 sm:mb-12 md:mb-16 max-w-3xl mx-auto">
-              A gentle structure to hold you, flexible enough to honor your body, yet
-              intentional enough to support deep rest and transformation.
-            </p>
-          </FadeIn>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6 md:gap-8">
-            {/* Friday */}
-            <FadeIn delay={100}>
-              <div className="bg-white rounded-3xl p-5 sm:p-6 md:p-8 shadow-md border-t-4 border-deep-green">
-                <div className="text-2xl sm:text-3xl mb-2 sm:mb-3">🌅</div>
-                <h3 className="text-xl sm:text-2xl md:text-3xl font-serif font-bold text-deep-green mb-2">
-                  Friday
-                </h3>
-                <h4 className="font-semibold text-gray-800 mb-3 sm:mb-4 text-base sm:text-lg">
-                  Arrival & Grounding
-                </h4>
-                <ul className="space-y-2 text-sm sm:text-base text-gray-700 font-body">
-                  <li className="flex items-start gap-2">
-                    <span className="text-gold mt-1">•</span>
-                    <span>Check-in after 3pm</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-gold mt-1">•</span>
-                    <span>Herbal tea welcome</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-gold mt-1">•</span>
-                    <span>Sunset opening circle</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-gold mt-1">•</span>
-                    <span>Gentle OM meditation</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-gold mt-1">•</span>
-                    <span>Early rest</span>
-                  </li>
-                </ul>
-              </div>
-            </FadeIn>
-
-            {/* Saturday */}
-            <FadeIn delay={200}>
-              <div className="bg-white rounded-3xl p-5 sm:p-6 md:p-8 shadow-md border-t-4 border-deep-green">
-                <div className="text-2xl sm:text-3xl mb-2 sm:mb-3">🌊</div>
-                <h3 className="text-xl sm:text-2xl md:text-3xl font-serif font-bold text-deep-green mb-2">
-                  Saturday
-                </h3>
-                <h4 className="font-semibold text-gray-800 mb-3 sm:mb-4 text-base sm:text-lg">
-                  Deep Dive Day
-                </h4>
-                <ul className="space-y-2 text-sm sm:text-base text-gray-700 font-body">
-                  <li className="flex items-start gap-2">
-                    <span className="text-gold mt-1">•</span>
-                    <span>Morning yoga & breathwork</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-gold mt-1">•</span>
-                    <span>Ayurveda workshop</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-gold mt-1">•</span>
-                    <span>Longboard lesson or nature walk</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-gold mt-1">•</span>
-                    <span>Conscious cooking session</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-gold mt-1">•</span>
-                    <span>Evening kirtan & sound healing</span>
-                  </li>
-                </ul>
-              </div>
-            </FadeIn>
-
-            {/* Sunday */}
-            <FadeIn delay={300}>
-              <div className="bg-white rounded-3xl p-5 sm:p-6 md:p-8 shadow-md border-t-4 border-deep-green">
-                <div className="text-2xl sm:text-3xl mb-2 sm:mb-3">🌙</div>
-                <h3 className="text-xl sm:text-2xl md:text-3xl font-serif font-bold text-deep-green mb-2">
-                  Sunday
-                </h3>
-                <h4 className="font-semibold text-gray-800 mb-3 sm:mb-4 text-base sm:text-lg">
-                  Integration & Embodiment
-                </h4>
-                <ul className="space-y-2 text-sm sm:text-base text-gray-700 font-body">
-                  <li className="flex items-start gap-2">
-                    <span className="text-gold mt-1">•</span>
-                    <span>Gentle morning yoga & journaling</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-gold mt-1">•</span>
-                    <span>Self-care rituals (abhyanga)</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-gold mt-1">•</span>
-                    <span>Brunch & free time</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-gold mt-1">•</span>
-                    <span>Afternoon sharing circle</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-gold mt-1">•</span>
-                    <span>Closing fire or candlelight kirtan</span>
-                  </li>
-                </ul>
-              </div>
-            </FadeIn>
-
-            {/* Monday */}
-            <FadeIn delay={400}>
-              <div className="bg-white rounded-3xl p-5 sm:p-6 md:p-8 shadow-md border-t-4 border-deep-green">
-                <div className="text-2xl sm:text-3xl mb-2 sm:mb-3">☀️</div>
-                <h3 className="text-xl sm:text-2xl md:text-3xl font-serif font-bold text-deep-green mb-2">
-                  Monday
-                </h3>
-                <h4 className="font-semibold text-gray-800 mb-3 sm:mb-4 text-base sm:text-lg">
-                  Soft Departure
-                </h4>
-                <ul className="space-y-2 text-sm sm:text-base text-gray-700 font-body">
-                  <li className="flex items-start gap-2">
-                    <span className="text-gold mt-1">•</span>
-                    <span>Sunrise stretch or beach walk</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-gold mt-1">•</span>
-                    <span>Light breakfast</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-gold mt-1">•</span>
-                    <span>Closing reflection</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-gold mt-1">•</span>
-                    <span>Check-out by 11am</span>
-                  </li>
-                </ul>
-              </div>
-            </FadeIn>
-          </div>
-
-          <FadeIn delay={500}>
-            <p className="mt-6 sm:mt-8 md:mt-12 text-center text-gray-600 font-body text-xs sm:text-sm md:text-base italic max-w-3xl mx-auto px-4">
-              Schedule may adjust slightly based on weather and the needs of the group,
-              while keeping the same essence and practices.
-            </p>
-          </FadeIn>
-        </div>
-      </section>
-
-      {/* SECTION 5 - Closing: Who It's For + CTA - Mobile optimized */}
-      <section className="py-12 sm:py-16 md:py-24 lg:py-32 px-4 sm:px-6 md:px-8 lg:px-16 bg-white">
-        <div className="max-w-4xl mx-auto text-center">
-          <FadeIn>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-deep-green mb-5 sm:mb-6 md:mb-8 tracking-tight">
-              Is Sacred Shores for You?
-            </h2>
-          </FadeIn>
-
-          <FadeIn delay={100}>
-            <p className="text-base sm:text-lg md:text-xl text-gray-700 font-body leading-relaxed mb-5 sm:mb-6 md:mb-8">
-              This retreat is for women who feel the pull to slow down, reconnect with
-              their bodies, and remember their inner wisdom. Whether you're burned out,
-              navigating transition, or simply longing for deeper connection with
-              yourself, nature, and other women. Sacred Shores offers a soft landing and
-              a brave, loving space.
-            </p>
-          </FadeIn>
-
-          <FadeIn delay={200}>
-            <p className="text-sm sm:text-base md:text-lg text-gray-600 font-body leading-relaxed mb-8 sm:mb-10 md:mb-12">
-              You don't need experience with yoga, Ayurveda, or surfing. All you need
-              is a willing heart and the desire to step away from daily noise for a few
-              days and listen to what's true inside of you.
-            </p>
-          </FadeIn>
-
-          <FadeIn delay={300}>
-            <a
-              href="/#pricing"
-              className="inline-block px-6 sm:px-8 py-4 rounded-full bg-deep-green text-white font-semibold text-base sm:text-sm md:text-base hover:bg-deep-green/90 hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-deep-green focus:ring-offset-2 min-h-[48px] sm:min-h-[44px] flex items-center justify-center"
-            >
-              Reserve Your Spot
-            </a>
-          </FadeIn>
-        </div>
-      </section>
-    </>
+    </article>
   )
 }
-

@@ -3,7 +3,9 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import HomePage from './pages/HomePage'
+import RetreatPage from './pages/RetreatPage'
 import RetreatDetailsPage from './pages/RetreatDetailsPage'
+import WellnessPage from './pages/WellnessPage'
 
 function App() {
   useEffect(() => {
@@ -45,11 +47,31 @@ function App() {
             }
           />
           <Route
+            path="/retreat"
+            element={
+              <>
+                <Navbar />
+                <RetreatPage />
+                <Footer />
+              </>
+            }
+          />
+          <Route
             path="/learn-more"
             element={
               <>
                 <Navbar />
                 <RetreatDetailsPage />
+                <Footer />
+              </>
+            }
+          />
+          <Route
+            path="/wellness"
+            element={
+              <>
+                <Navbar />
+                <WellnessPage />
                 <Footer />
               </>
             }

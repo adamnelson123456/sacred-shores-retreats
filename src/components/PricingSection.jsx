@@ -6,14 +6,14 @@ import FadeIn from './FadeIn'
 
 export default function PricingSection() {
   const includedItems = [
-    'Beautiful Floripa accommodation',
-    'Daily yoga & meditation',
-    'All Ayurveda workshops & rituals',
-    'Conscious cooking sessions',
-    'Longboard lesson or nature immersion',
-    'Nightly kirtan & sound healing',
-    'Sacred feminine sharing circles',
-    'Pre-retreat Ayurvedic guide PDF',
+    'Four nights — Itamambuca / Ubatuba setting',
+    'Daily yoga, breath & integration time',
+    'Ayurveda workshops, dinacharya & abhyanga',
+    'Food & Ayurveda workshop + cooking session',
+    'Optional surf & forest bathing / meditation',
+    'Evening sound baths, kirtan & shared meals',
+    'Opening Sankalpa & closing integration circle',
+    'Plant-based meals, snacks & retreat materials',
   ]
 
   return (
@@ -42,7 +42,7 @@ export default function PricingSection() {
                 {/* Left Column: Title, Price, Description */}
                 <div className="flex flex-col">
                   <h3 className="text-xl sm:text-2xl md:text-3xl font-serif font-bold mb-3 sm:mb-4 text-deep-green">
-                    Sacred Shores Retreat Rate
+                    Yamuna Retreat Rate
                   </h3>
                   
                   {/* Price with gold styling */}
@@ -52,7 +52,7 @@ export default function PricingSection() {
                   
                   {/* Description */}
                   <p className="text-gray-700 font-body leading-relaxed text-sm sm:text-base md:text-lg">
-                    A single flat rate for your full Sacred Shores experience, including lodging, meals, all sessions, and retreat materials.
+                    A single flat rate for your full Yamuna Retreats experience, including lodging, meals, all sessions, and retreat materials.
                   </p>
                 </div>
 

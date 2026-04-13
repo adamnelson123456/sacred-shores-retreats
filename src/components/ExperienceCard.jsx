@@ -8,7 +8,7 @@ export default function ExperienceCard({ title, description, image }) {
       <div className="relative h-56 sm:h-64 md:h-80 overflow-hidden rounded-t-3xl">
         <img
           src={image}
-          alt={`${title} experience at Sacred Shores Retreat`}
+          alt={`${title} experience at Yamuna Retreat`}
           className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
         />
       </div>

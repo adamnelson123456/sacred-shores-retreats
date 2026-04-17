@@ -5,7 +5,11 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import FadeIn from '../components/FadeIn'
-import { HOME_HERO_STATIC_SRC, HOME_HERO_VIDEO_SRC } from '../constants/brand'
+import {
+  HOME_HERO_STATIC_SRC,
+  HOME_HERO_VIDEO_MOBILE_SRC,
+  HOME_HERO_VIDEO_SRC,
+} from '../constants/brand'
 import ReturnSection from '../components/ReturnSection'
 import SanctuarySection from '../components/SanctuarySection'
 import TestimonialSection from '../components/TestimonialSection'
@@ -17,6 +21,8 @@ export default function HomePage() {
   const heroVideoRef = useRef(null)
   const [reduceMotion, setReduceMotion] = useState(false)
   const [heroVideoFailed, setHeroVideoFailed] = useState(false)
+  /** Fade video in only once frames are moving — waves img shows underneath first (fast on iPhone). */
+  const [heroVideoVisible, setHeroVideoVisible] = useState(false)
 
   useEffect(() => {
     const mq = window.matchMedia('(prefers-reduced-motion: reduce)')
@@ -25,6 +31,30 @@ export default function HomePage() {
     mq.addEventListener('change', onChange)
     return () => mq.removeEventListener('change', onChange)
   }, [])
+
+  useEffect(() => {
+    setHeroVideoVisible(false)
+  }, [reduceMotion, heroVideoFailed, HOME_HERO_VIDEO_SRC, HOME_HERO_VIDEO_MOBILE_SRC])
+
+  /** Hint the browser to start fetching the hero MP4 as early as possible (Safari ignores sometimes). */
+  useEffect(() => {
+    if (reduceMotion || heroVideoFailed || !HOME_HERO_VIDEO_SRC) return
+    const href =
+      HOME_HERO_VIDEO_MOBILE_SRC &&
+      typeof window !== 'undefined' &&
+      window.matchMedia('(max-width: 767px)').matches
+        ? HOME_HERO_VIDEO_MOBILE_SRC
+        : HOME_HERO_VIDEO_SRC
+    const link = document.createElement('link')
+    link.rel = 'preload'
+    link.as = 'video'
+    link.href = href
+    link.setAttribute('type', 'video/mp4')
+    document.head.appendChild(link)
+    return () => {
+      link.remove()
+    }
+  }, [reduceMotion, heroVideoFailed, HOME_HERO_VIDEO_SRC, HOME_HERO_VIDEO_MOBILE_SRC])
 
   useEffect(() => {
     if (reduceMotion || heroVideoFailed || !HOME_HERO_VIDEO_SRC) return
@@ -40,8 +70,14 @@ export default function HomePage() {
       el.play().catch(() => {})
     }
 
+    try {
+      el.load()
+    } catch {
+      /* ignore */
+    }
     tryPlay()
     el.addEventListener('canplay', tryPlay)
+    el.addEventListener('canplaythrough', tryPlay)
     el.addEventListener('loadeddata', tryPlay)
     el.addEventListener('loadedmetadata', tryPlay)
     const onVis = () => {
@@ -51,6 +87,7 @@ export default function HomePage() {
 
     return () => {
       el.removeEventListener('canplay', tryPlay)
+      el.removeEventListener('canplaythrough', tryPlay)
       el.removeEventListener('loadeddata', tryPlay)
       el.removeEventListener('loadedmetadata', tryPlay)
       document.removeEventListener('visibilitychange', onVis)
@@ -71,41 +108,53 @@ export default function HomePage() {
     <>
       <section className="relative min-h-[100dvh] overflow-x-clip">
         <div className="absolute inset-0 bg-deep-green">
+          {reduceMotion && HOME_HERO_STATIC_SRC ? (
+            <img
+              src={HOME_HERO_STATIC_SRC}
+              alt=""
+              className="absolute inset-0 h-full w-full object-cover"
+              decoding="async"
+              aria-hidden
+            />
+          ) : null}
+          {!reduceMotion && HOME_HERO_STATIC_SRC ? (
+            <img
+              src={HOME_HERO_STATIC_SRC}
+              alt=""
+              className="absolute inset-0 z-0 h-full w-full object-cover"
+              decoding="async"
+              fetchPriority="high"
+              loading="eager"
+              aria-hidden
+            />
+          ) : null}
           {!reduceMotion && !heroVideoFailed && HOME_HERO_VIDEO_SRC ? (
             <video
               ref={heroVideoRef}
-              className="absolute inset-0 h-full min-h-full w-full object-cover [transform:translateZ(0)]"
-              src={HOME_HERO_VIDEO_SRC}
+              className={`pointer-events-none absolute inset-0 z-[1] h-full min-h-full w-full object-cover [transform:translateZ(0)] transition-opacity duration-700 ease-out ${
+                heroVideoVisible ? 'opacity-100' : 'opacity-0'
+              }`}
               poster={HOME_HERO_STATIC_SRC}
               autoPlay
               muted
               defaultMuted
               loop
               playsInline
-              preload="metadata"
+              preload="auto"
               controls={false}
               disablePictureInPicture
               aria-hidden
               onError={() => setHeroVideoFailed(true)}
-            />
-          ) : null}
-          {!reduceMotion && !heroVideoFailed && !HOME_HERO_VIDEO_SRC ? (
-            <img
-              src={HOME_HERO_STATIC_SRC}
-              alt=""
-              className="absolute inset-0 h-full w-full object-cover"
-              decoding="async"
-              aria-hidden
-            />
-          ) : null}
-          {!reduceMotion && heroVideoFailed ? (
-            <img
-              src={HOME_HERO_STATIC_SRC}
-              alt=""
-              className="absolute inset-0 h-full w-full object-cover"
-              decoding="async"
-              aria-hidden
-            />
+              onPlaying={() => setHeroVideoVisible(true)}
+              onTimeUpdate={(e) => {
+                if (e.currentTarget.currentTime > 0.02) setHeroVideoVisible(true)
+              }}
+            >
+              {HOME_HERO_VIDEO_MOBILE_SRC ? (
+                <source media="(max-width: 767px)" src={HOME_HERO_VIDEO_MOBILE_SRC} type="video/mp4" />
+              ) : null}
+              <source src={HOME_HERO_VIDEO_SRC} type="video/mp4" />
+            </video>
           ) : null}
         </div>
         <div className="absolute inset-0 bg-black/20" />

@@ -10,5 +10,14 @@ export const HOME_HERO_VIDEO_SRC =
   (import.meta.env.VITE_HERO_VIDEO_URL && String(import.meta.env.VITE_HERO_VIDEO_URL).trim()) ||
   encodeURI('/images/yamuna-hero.mp4')
 
+/**
+ * Optional smaller MP4 for narrow viewports (iPhone). Same-origin path or full URL.
+ * If unset, phones load `HOME_HERO_VIDEO_SRC` (large files feel “slow” on cellular).
+ */
+export const HOME_HERO_VIDEO_MOBILE_SRC =
+  (import.meta.env.VITE_HERO_VIDEO_URL_MOBILE &&
+    String(import.meta.env.VITE_HERO_VIDEO_URL_MOBILE).trim()) ||
+  ''
+
 /** Shown behind the hero when video fails to load or is unavailable. */
 export const HOME_HERO_STATIC_SRC = encodeURI('/images/waves.jpg')

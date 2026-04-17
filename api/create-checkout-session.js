@@ -1,9 +1,38 @@
 /**
  * Vercel Serverless Function — creates a Stripe Checkout Session (hosted payment page).
- * Env: STRIPE_SECRET_KEY (required). Optional: SITE_URL for redirects when Origin is missing.
+ *
+ * Env (Vercel → Settings → Environment Variables):
+ *   STRIPE_SECRET_KEY — required, from Stripe Dashboard → API keys (sk_test_… or sk_live_…)
+ *   SITE_URL — optional; used for success/cancel URLs when Origin header is missing
+ *
+ * Uses your default Stripe account (no Connect). Payments appear in Dashboard → Payments.
  */
 import Stripe from 'stripe'
 import { getMerchCatalogEntry } from './merchCatalog.js'
+
+/** Countries where we’ll collect a shipping address (physical merch). Adjust in this file if needed. */
+const SHIPPING_COUNTRIES = [
+  'BR',
+  'US',
+  'CA',
+  'GB',
+  'DE',
+  'FR',
+  'IT',
+  'ES',
+  'PT',
+  'NL',
+  'BE',
+  'CH',
+  'AT',
+  'IE',
+  'AU',
+  'NZ',
+  'MX',
+  'AR',
+  'CL',
+  'CO',
+]
 
 const FX = {
   brlPerUsd: 5.45,
@@ -37,9 +66,18 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' })
   }
 
-  const secret = process.env.STRIPE_SECRET_KEY
+  const secret = process.env.STRIPE_SECRET_KEY?.trim()
   if (!secret) {
-    return res.status(503).json({ error: 'Stripe is not configured (missing STRIPE_SECRET_KEY)' })
+    return res.status(503).json({
+      error:
+        'Stripe is not configured. In Vercel → Settings → Environment Variables, add STRIPE_SECRET_KEY (from Stripe Dashboard → API keys), then redeploy.',
+    })
+  }
+  if (!secret.startsWith('sk_')) {
+    return res.status(503).json({
+      error:
+        'STRIPE_SECRET_KEY must be your Stripe secret key (starts with sk_test_ or sk_live_). Check Vercel environment variables.',
+    })
   }
 
   let body = req.body
@@ -86,16 +124,24 @@ export default async function handler(req, res) {
     })
   }
 
-  const stripe = new Stripe(secret)
+  const stripe = new Stripe(secret, {
+    appInfo: { name: 'Yamuna Retreats Shop', version: '1.0.0' },
+  })
   const origin = resolveOrigin(req)
 
   try {
     const session = await stripe.checkout.sessions.create({
       mode: 'payment',
       line_items: lineItems,
-      success_url: `${origin}/store/cart?checkout=success`,
-      cancel_url: `${origin}/store/cart?checkout=cancel`,
+      success_url: `${origin}/shop/cart?checkout=success`,
+      cancel_url: `${origin}/shop/cart?checkout=cancel`,
       billing_address_collection: 'required',
+      shipping_address_collection: { allowed_countries: SHIPPING_COUNTRIES },
+      phone_number_collection: { enabled: true },
+      metadata: {
+        source: 'yamuna-shop',
+        currency: currencyLower,
+      },
     })
 
     return res.status(200).json({ url: session.url })

@@ -81,12 +81,14 @@ function App() {
               </>
             }
           />
-          {/* Store: not linked from site nav — only yamunaretreats.com/store */}
-          <Route path="/store" element={<MerchLayout />}>
+          {/* Shop: URL-only (no nav link) — yamunaretreats.com/shop */}
+          <Route path="/shop" element={<MerchLayout />}>
             <Route index element={<MerchPage />} />
             <Route path="cart" element={<MerchCartPage />} />
             <Route path=":slug" element={<MerchProductPage />} />
           </Route>
+          <Route path="/store" element={<MerchLegacyRedirect />} />
+          <Route path="/store/*" element={<MerchLegacyRedirect />} />
           <Route path="/merch" element={<MerchLegacyRedirect />} />
           <Route path="/merch/*" element={<MerchLegacyRedirect />} />
         </Routes>

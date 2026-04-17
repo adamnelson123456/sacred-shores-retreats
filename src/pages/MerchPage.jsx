@@ -1,6 +1,6 @@
 /**
  * Yamuna Retreat merch — draft layout only.
- * Not linked from the nav or site; open via /store (direct URL only).
+ * Not linked from the nav or site; open via /shop (direct URL only).
  */
 import FadeIn from '../components/FadeIn'
 import MerchCurrencyToggle from '../components/MerchCurrencyToggle'
@@ -30,7 +30,7 @@ export default function MerchPage() {
               Yamuna Retreat
             </p>
             <h1 className="text-center font-serif text-[clamp(2rem,5.2vw,3.5rem)] font-bold leading-[1.08] tracking-tight text-deep-green sm:text-left">
-              Store
+              Shop
             </h1>
             <p className="mx-auto mt-6 max-w-2xl text-center font-body text-base leading-[1.75] text-gray-600 sm:mx-0 sm:text-left sm:text-lg">
               Wearables and keepsakes that carry the retreat home — mug, tote, hoodie, and shirt. This page is a draft:
@@ -81,7 +81,7 @@ export default function MerchPage() {
                     {formatMerchPriceFromBrl(p.priceBrl, currency)}
                   </p>
                   <Link
-                    to={`/store/${p.slug}`}
+                    to={`/shop/${p.slug}`}
                     className="mt-4 inline-flex w-full min-h-[44px] items-center justify-center rounded-full border-2 border-deep-green bg-deep-green px-4 py-2.5 font-sans text-[10px] font-semibold uppercase tracking-[0.2em] text-white transition hover:bg-deep-green/90 focus:outline-none focus-visible:ring-2 focus-visible:ring-deep-green focus-visible:ring-offset-2 sm:text-[11px]"
                   >
                     Shop now

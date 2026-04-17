@@ -1,5 +1,5 @@
 /**
- * Yamuna store products — /store and /store/:slug (not linked in main nav).
+ * Yamuna shop products — /shop and /shop/:slug (not linked in main nav).
  * `images[0]` = current thumbnail; `images[1]` = legacy flat product art (carousel).
  */
 export const merchProducts = [

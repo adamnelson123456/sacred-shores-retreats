@@ -1,5 +1,5 @@
 /**
- * Store cart & Stripe Checkout — /store/cart
+ * Shop cart & Stripe Checkout — /shop/cart
  */
 import { useEffect, useState } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
@@ -7,6 +7,7 @@ import FadeIn from '../components/FadeIn'
 import MerchCurrencyToggle from '../components/MerchCurrencyToggle'
 import { useMerchCart } from '../context/MerchCartContext'
 import { useMerchCurrency } from '../context/MerchCurrencyContext'
+import { getStripeCheckoutSessionUrl } from '../constants/checkout'
 import { getMerchBySlug } from '../data/merchProducts'
 import { formatMerchPriceFromBrl } from '../utils/merchPricing'
 
@@ -49,7 +50,7 @@ export default function MerchCartPage() {
     if (!items.length) return
     setCheckoutLoading(true)
     try {
-      const res = await fetch('/api/create-checkout-session', {
+      const res = await fetch(getStripeCheckoutSessionUrl(), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -75,8 +76,8 @@ export default function MerchCartPage() {
       <div className="mx-auto max-w-3xl min-w-0 px-4 sm:px-6 md:px-10 lg:px-12">
         <FadeIn>
           <nav className="mb-8 flex flex-wrap items-center gap-x-2 gap-y-1 font-sans text-[11px] font-medium uppercase tracking-[0.22em] text-gray-500">
-            <Link to="/store" className="text-terracotta transition hover:text-deep-green">
-              Store
+            <Link to="/shop" className="text-terracotta transition hover:text-deep-green">
+              Shop
             </Link>
             <span className="mx-2 text-gray-400" aria-hidden>
               /
@@ -127,7 +128,7 @@ export default function MerchCartPage() {
                   >
                     {thumb && (
                       <Link
-                        to={`/store/${line.slug}`}
+                        to={`/shop/${line.slug}`}
                         className="mx-auto h-24 w-24 shrink-0 overflow-hidden rounded-xl border border-deep-green/10 bg-white sm:mx-0 sm:h-24 sm:w-24"
                       >
                         <img src={thumb} alt={product.name} className="h-full w-full object-contain object-center p-1" />
@@ -135,7 +136,7 @@ export default function MerchCartPage() {
                     )}
                     <div className="min-w-0 flex-1 text-center sm:text-left">
                       <Link
-                        to={`/store/${line.slug}`}
+                        to={`/shop/${line.slug}`}
                         className="break-words font-serif text-lg font-semibold text-deep-green transition hover:text-terracotta"
                       >
                         {product.name}
@@ -204,7 +205,7 @@ export default function MerchCartPage() {
         <FadeIn delay={120}>
           <div className="mt-12 flex flex-col gap-4 sm:flex-row">
             <Link
-              to="/store"
+              to="/shop"
               className="inline-flex w-full min-h-[48px] items-center justify-center rounded-full border-2 border-deep-green/35 bg-transparent px-8 py-3 text-center font-sans text-[11px] font-semibold uppercase tracking-[0.2em] text-deep-green transition hover:bg-deep-green/[0.06] focus:outline-none focus-visible:ring-2 focus-visible:ring-deep-green focus-visible:ring-offset-2 sm:w-auto"
             >
               Continue shopping

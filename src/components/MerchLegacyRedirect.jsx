@@ -1,8 +1,8 @@
 import { Navigate, useLocation } from 'react-router-dom'
 
-/** Old `/merch` URLs → `/store` (same path suffix). */
+/** `/merch` and `/store` → `/shop` (keeps path suffix, e.g. `/store/cart` → `/shop/cart`). */
 export default function MerchLegacyRedirect() {
   const { pathname, search, hash } = useLocation()
-  const to = (pathname.replace(/^\/merch/, '/store') || '/store') + search + hash
+  const to = (pathname.replace(/^\/(merch|store)(?=\/|$)/, '/shop') || '/shop') + search + hash
   return <Navigate to={to} replace />
 }

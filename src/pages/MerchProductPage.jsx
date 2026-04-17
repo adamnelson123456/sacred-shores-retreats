@@ -1,5 +1,5 @@
 /**
- * Single store product — /store/:slug (not linked from main nav).
+ * Single shop product — /shop/:slug (not linked from main nav).
  */
 import { useEffect, useState } from 'react'
 import { Link, Navigate, useNavigate, useParams } from 'react-router-dom'
@@ -24,7 +24,7 @@ export default function MerchProductPage() {
   }, [slug])
 
   if (!product) {
-    return <Navigate to="/store" replace />
+    return <Navigate to="/shop" replace />
   }
 
   return (
@@ -32,8 +32,8 @@ export default function MerchProductPage() {
       <div className="mx-auto max-w-6xl min-w-0 px-4 sm:px-6 md:px-10 lg:px-12">
         <FadeIn>
           <nav className="mb-8 flex flex-wrap items-center gap-x-2 gap-y-1 font-sans text-[11px] font-medium uppercase tracking-[0.22em] text-gray-500">
-            <Link to="/store" className="text-terracotta transition hover:text-deep-green">
-              Store
+            <Link to="/shop" className="text-terracotta transition hover:text-deep-green">
+              Shop
             </Link>
             <span className="mx-2 text-gray-400" aria-hidden>
               /
@@ -123,7 +123,7 @@ export default function MerchProductPage() {
                     type="button"
                     onClick={() => {
                       addToCart(product.slug, quantity)
-                      navigate('/store/cart')
+                      navigate('/shop/cart')
                     }}
                     className="inline-flex min-h-[48px] flex-1 items-center justify-center rounded-full border-2 border-deep-green bg-deep-green px-8 py-3 font-sans text-[11px] font-semibold uppercase tracking-[0.2em] text-white transition hover:bg-deep-green/90 focus:outline-none focus-visible:ring-2 focus-visible:ring-deep-green focus-visible:ring-offset-2 sm:min-w-[12rem]"
                   >
@@ -131,7 +131,7 @@ export default function MerchProductPage() {
                   </button>
                 </div>
                 <Link
-                  to="/store"
+                  to="/shop"
                   className="inline-flex min-h-[48px] items-center justify-center rounded-full border-2 border-deep-green/35 bg-transparent px-8 py-3 font-sans text-[11px] font-semibold uppercase tracking-[0.2em] text-deep-green transition hover:bg-deep-green/[0.06] focus:outline-none focus-visible:ring-2 focus-visible:ring-deep-green focus-visible:ring-offset-2 sm:w-fit"
                 >
                   Back to collection

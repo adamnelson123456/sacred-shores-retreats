@@ -38,11 +38,22 @@ export default function MerchImageCarousel({ images, altBase, variant = 'card' }
     if (!el) return
     updateActiveFromScroll()
     el.addEventListener('scroll', updateActiveFromScroll, { passive: true })
-    const ro = new ResizeObserver(() => updateActiveFromScroll())
-    ro.observe(el)
+    let ro = null
+    if (typeof ResizeObserver !== 'undefined') {
+      try {
+        ro = new ResizeObserver(() => updateActiveFromScroll())
+        ro.observe(el)
+      } catch {
+        ro = null
+      }
+    }
+    if (!ro) {
+      window.addEventListener('resize', updateActiveFromScroll, { passive: true })
+    }
     return () => {
       el.removeEventListener('scroll', updateActiveFromScroll)
-      ro.disconnect()
+      ro?.disconnect()
+      if (!ro) window.removeEventListener('resize', updateActiveFromScroll)
     }
   }, [updateActiveFromScroll])
 

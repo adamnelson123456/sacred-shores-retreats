@@ -5,6 +5,14 @@ export default function FadeIn({ children, delay = 0, className = '' }) {
   const ref = useRef(null)
 
   useEffect(() => {
+    const node = ref.current
+    if (!node) return undefined
+
+    if (typeof IntersectionObserver === 'undefined') {
+      const t = window.setTimeout(() => setIsVisible(true), delay)
+      return () => window.clearTimeout(t)
+    }
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -18,10 +26,7 @@ export default function FadeIn({ children, delay = 0, className = '' }) {
       }
     )
 
-    if (ref.current) {
-      observer.observe(ref.current)
-    }
-
+    observer.observe(node)
     return () => observer.disconnect()
   }, [delay])
 

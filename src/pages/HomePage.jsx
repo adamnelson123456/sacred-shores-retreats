@@ -5,7 +5,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import FadeIn from '../components/FadeIn'
-import { HOME_HERO_STATIC_SRC, HOME_HERO_VIDEO_SRC, YAMUNA_LOGO_SRC } from '../constants/brand'
+import { HOME_HERO_STATIC_SRC, HOME_HERO_VIDEO_SRC } from '../constants/brand'
 import ReturnSection from '../components/ReturnSection'
 import SanctuarySection from '../components/SanctuarySection'
 import TestimonialSection from '../components/TestimonialSection'
@@ -35,16 +35,25 @@ export default function HomePage() {
       el.muted = true
       el.defaultMuted = true
       el.setAttribute('muted', '')
+      el.setAttribute('playsinline', '')
+      el.setAttribute('webkit-playsinline', '')
       el.play().catch(() => {})
     }
 
     tryPlay()
     el.addEventListener('canplay', tryPlay)
     el.addEventListener('loadeddata', tryPlay)
+    el.addEventListener('loadedmetadata', tryPlay)
+    const onVis = () => {
+      if (document.visibilityState === 'visible') tryPlay()
+    }
+    document.addEventListener('visibilitychange', onVis)
 
     return () => {
       el.removeEventListener('canplay', tryPlay)
       el.removeEventListener('loadeddata', tryPlay)
+      el.removeEventListener('loadedmetadata', tryPlay)
+      document.removeEventListener('visibilitychange', onVis)
       el.pause()
     }
   }, [reduceMotion, heroVideoFailed])
@@ -60,18 +69,22 @@ export default function HomePage() {
 
   return (
     <>
-      <section className="relative min-h-[100dvh] overflow-hidden">
+      <section className="relative min-h-[100dvh] overflow-x-clip">
         <div className="absolute inset-0 bg-deep-green">
           {!reduceMotion && !heroVideoFailed && HOME_HERO_VIDEO_SRC ? (
             <video
               ref={heroVideoRef}
-              className="absolute inset-0 h-full w-full object-cover"
+              className="absolute inset-0 h-full min-h-full w-full object-cover [transform:translateZ(0)]"
               src={HOME_HERO_VIDEO_SRC}
+              poster={HOME_HERO_STATIC_SRC}
               autoPlay
               muted
+              defaultMuted
               loop
               playsInline
-              preload="auto"
+              preload="metadata"
+              controls={false}
+              disablePictureInPicture
               aria-hidden
               onError={() => setHeroVideoFailed(true)}
             />
@@ -86,14 +99,13 @@ export default function HomePage() {
             />
           ) : null}
           {!reduceMotion && heroVideoFailed ? (
-            <div className="absolute inset-0 flex items-center justify-center bg-deep-green">
-              <img
-                src={YAMUNA_LOGO_SRC}
-                alt=""
-                className="max-h-[38vh] w-auto max-w-[min(520px,85vw)] object-contain opacity-35"
-                decoding="async"
-              />
-            </div>
+            <img
+              src={HOME_HERO_STATIC_SRC}
+              alt=""
+              className="absolute inset-0 h-full w-full object-cover"
+              decoding="async"
+              aria-hidden
+            />
           ) : null}
         </div>
         <div className="absolute inset-0 bg-black/20" />

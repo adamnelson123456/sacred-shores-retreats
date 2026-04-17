@@ -128,9 +128,10 @@ export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [retreatDropdownOpen, setRetreatDropdownOpen] = useState(false)
   const [mobileRetreatOpen, setMobileRetreatOpen] = useState(false)
+  const [darkSectionActive, setDarkSectionActive] = useState(false)
 
   const heroOverlay = (pathname === '/' || pathname === '/retreat') && !scrolled
-  const light = heroOverlay
+  const light = heroOverlay || darkSectionActive
 
   /** Itamambuca → top of /retreat; if already there, scroll up (and drop hash). */
   const handleItamambucaClick = (e) => {
@@ -145,6 +146,15 @@ export default function Navbar() {
     setRetreatDropdownOpen(false)
     setMobileRetreatOpen(false)
   }, [pathname])
+
+  useEffect(() => {
+    if (!mobileMenuOpen) return undefined
+    const prev = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    return () => {
+      document.body.style.overflow = prev
+    }
+  }, [mobileMenuOpen])
 
   useEffect(() => {
     const isHeroRoute = pathname === '/' || pathname === '/retreat'
@@ -166,15 +176,44 @@ export default function Navbar() {
     }
   }, [pathname])
 
+  useEffect(() => {
+    const darkSections = Array.from(document.querySelectorAll('[data-nav-theme="dark"]'))
+    if (!darkSections.length) {
+      setDarkSectionActive(false)
+      return undefined
+    }
+
+    const active = new Set()
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const key = entry.target
+          if (entry.isIntersecting) active.add(key)
+          else active.delete(key)
+        })
+        setDarkSectionActive(active.size > 0)
+      },
+      {
+        // Trigger when the section is roughly under the nav area.
+        root: null,
+        threshold: 0.01,
+        rootMargin: '-96px 0px -70% 0px',
+      }
+    )
+
+    darkSections.forEach((el) => observer.observe(el))
+    return () => observer.disconnect()
+  }, [pathname])
+
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 pt-[env(safe-area-inset-top,0px)] transition-all duration-300 ${
         light
           ? 'border-b-0 bg-transparent'
           : 'border-b border-black/[0.08] bg-nav-bg/98 shadow-sm backdrop-blur-md'
       }`}
     >
-      <div className="max-w-[1600px] mx-auto flex w-full items-center justify-between gap-3 sm:gap-6 px-4 sm:px-6 md:px-10 lg:px-14 py-3.5 md:py-4 md:grid md:grid-cols-[1fr_auto_1fr] md:items-center md:justify-items-stretch">
+      <div className="max-w-[1600px] mx-auto flex w-full items-center justify-between gap-3 sm:gap-6 py-3.5 md:py-4 md:grid md:grid-cols-[1fr_auto_1fr] md:items-center md:justify-items-stretch pl-[calc(1rem+env(safe-area-inset-left,0px))] pr-[calc(1rem+env(safe-area-inset-right,0px))] sm:pl-[calc(1.5rem+env(safe-area-inset-left,0px))] sm:pr-[calc(1.5rem+env(safe-area-inset-right,0px))] md:pl-[calc(2.5rem+env(safe-area-inset-left,0px))] md:pr-[calc(2.5rem+env(safe-area-inset-right,0px))] lg:pl-[calc(3.5rem+env(safe-area-inset-left,0px))] lg:pr-[calc(3.5rem+env(safe-area-inset-right,0px))]">
         <div className="relative z-10 flex min-w-0 items-center justify-start gap-2 md:min-w-0">
           <button
             type="button"
@@ -276,7 +315,7 @@ export default function Navbar() {
 
       {mobileMenuOpen && (
         <div
-          className={`md:hidden border-t px-4 py-4 space-y-1 shadow-inner ${
+          className={`md:hidden border-t py-4 space-y-1 shadow-inner pl-[calc(1rem+env(safe-area-inset-left,0px))] pr-[calc(1rem+env(safe-area-inset-right,0px))] ${
             light ? 'border-white/15 bg-deep-green/95 backdrop-blur-md' : 'border-black/[0.06] bg-nav-bg'
           }`}
         >

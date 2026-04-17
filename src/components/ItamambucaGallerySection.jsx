@@ -29,6 +29,7 @@ export default function ItamambucaGallerySection() {
       ref={sectionRef}
       id="welcome-itamambuca"
       style={bleedStyle}
+      data-nav-theme="dark"
       className="scroll-mt-20 relative shrink-0 overflow-hidden bg-black text-white"
     >
       <div className="pointer-events-none absolute inset-0 z-0">
@@ -69,7 +70,7 @@ export default function ItamambucaGallerySection() {
                   Explore the pillars
                 </Link>
                 <Link
-                  to="/retreat#retreat-flow"
+                  to="/retreat#experience"
                   className="inline-flex min-h-[48px] items-center rounded-full border border-white/40 px-5 py-3 font-sans text-[11px] font-semibold uppercase tracking-[0.18em] text-white/90 transition hover:border-white/55 hover:bg-white/5 sm:px-6"
                 >
                   Daily flow

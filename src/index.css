@@ -3,11 +3,39 @@
 @tailwind utilities;
 
 @layer base {
+  html {
+    overflow-x: clip;
+    -webkit-tap-highlight-color: rgba(15, 49, 35, 0.08);
+  }
+
+  #root {
+    min-height: 100dvh;
+    min-height: 100svh;
+    overflow-x: clip;
+  }
+
   body {
     @apply font-sans bg-[#F7F7F5] text-gray-800;
+    overflow-x: clip;
     /* Prevent text size adjustment on iOS */
     -webkit-text-size-adjust: 100%;
     text-size-adjust: 100%;
+    /* Keep content clear of notched / rounded display edges */
+    padding-left: env(safe-area-inset-left, 0px);
+    padding-right: env(safe-area-inset-right, 0px);
+  }
+
+  button,
+  [type='button'],
+  [type='submit'],
+  [type='reset'],
+  [role='button'] {
+    touch-action: manipulation;
+  }
+
+  img,
+  video {
+    max-width: 100%;
   }
   
   h1, h2, h3, h4, h5, h6 {

@@ -187,6 +187,7 @@ export default function InteractiveGalleryHero({
       ref={sectionRef}
       id={sectionId}
       style={fullBleed ? bleedStyle : undefined}
+      data-nav-theme="dark"
       className={`scroll-mt-20 relative shrink-0 overflow-hidden bg-neutral-950 text-white ${className}`}
     >
       {/* ——— Full-section background: swaps with `active` — replace URLs in your slides data ——— */}
@@ -208,7 +209,7 @@ export default function InteractiveGalleryHero({
       <div className="pointer-events-none absolute inset-0 z-[1] min-h-[100svh] bg-gradient-to-t from-black/60 via-transparent to-black/20 sm:min-h-[100dvh]" />
 
       {/* Main immersive column + foreground cards */}
-      <div className="relative z-10 mx-auto flex min-h-[100svh] w-full max-w-[1600px] flex-col px-5 pb-24 pt-24 sm:px-8 sm:pb-28 sm:pt-28 md:px-12 lg:flex-row lg:items-center lg:pb-32 lg:pt-32">
+      <div className="relative z-10 mx-auto flex min-h-[100svh] w-full max-w-[1600px] flex-col pl-[calc(1.25rem+env(safe-area-inset-left,0px))] pr-[calc(1.25rem+env(safe-area-inset-right,0px))] pb-[max(6rem,calc(5rem+env(safe-area-inset-bottom,0px)))] pt-24 sm:pl-[calc(2rem+env(safe-area-inset-left,0px))] sm:pr-[calc(2rem+env(safe-area-inset-right,0px))] sm:pb-28 sm:pt-28 md:pl-[calc(3rem+env(safe-area-inset-left,0px))] md:pr-[calc(3rem+env(safe-area-inset-right,0px))] lg:flex-row lg:items-center lg:pb-32 lg:pt-32">
         {/* Left: subtitle → title → body → CTA — on mobile stacks above the card row */}
         <div className="order-1 flex min-w-0 flex-none flex-col justify-center pb-10 lg:order-none lg:w-[min(44%,560px)] lg:min-w-0 lg:flex-none lg:justify-center lg:pb-0 lg:pr-8">
           <AnimatePresence mode="wait">
@@ -258,7 +259,7 @@ export default function InteractiveGalleryHero({
               ref={stripRef}
               role="tablist"
               aria-label="Gallery scenes"
-              className="relative z-0 flex touch-pan-x gap-3 overflow-x-auto overflow-y-visible scroll-smooth px-6 pb-4 pt-5 [scrollbar-width:none] sm:gap-4 sm:px-8 sm:pb-5 sm:pt-6 lg:justify-start lg:px-10 lg:pb-6 [&::-webkit-scrollbar]:hidden"
+              className="relative z-0 flex touch-pan-x gap-3 overflow-x-auto overflow-y-visible overscroll-x-contain scroll-smooth px-6 pb-4 pt-5 [scrollbar-width:none] sm:gap-4 sm:px-8 sm:pb-5 sm:pt-6 lg:justify-start lg:px-10 lg:pb-6 [-webkit-overflow-scrolling:touch] [&::-webkit-scrollbar]:hidden"
               style={{ scrollPaddingInline: '1.5rem' }}
             >
             {slides.map((slide, i) => {
@@ -330,7 +331,7 @@ export default function InteractiveGalleryHero({
                   exit={{ opacity: 0, x: -6 }}
                   transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
                   onClick={() => go(-1)}
-                  className="pointer-events-auto absolute left-1 top-1/2 z-20 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full border border-white/25 bg-black/30 text-white/80 shadow-sm backdrop-blur-sm transition hover:border-white/45 hover:bg-white/15 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/70 sm:left-2 sm:h-10 sm:w-10 lg:left-3"
+                  className="pointer-events-auto absolute left-1 top-1/2 z-20 flex h-11 w-11 min-h-[44px] min-w-[44px] -translate-y-1/2 items-center justify-center rounded-full border border-white/25 bg-black/30 text-white/80 shadow-sm backdrop-blur-sm transition hover:border-white/45 hover:bg-white/15 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/70 sm:left-2 lg:left-3"
                 >
                   <ChevronLeft className="h-4 w-4 sm:h-[18px] sm:w-[18px]" />
                 </motion.button>
@@ -347,7 +348,7 @@ export default function InteractiveGalleryHero({
                   exit={{ opacity: 0, x: 6 }}
                   transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
                   onClick={() => go(1)}
-                  className="pointer-events-auto absolute right-1 top-1/2 z-20 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full border border-white/25 bg-black/30 text-white/80 shadow-sm backdrop-blur-sm transition hover:border-white/45 hover:bg-white/15 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/70 sm:right-2 sm:h-10 sm:w-10 lg:right-3"
+                  className="pointer-events-auto absolute right-1 top-1/2 z-20 flex h-11 w-11 min-h-[44px] min-w-[44px] -translate-y-1/2 items-center justify-center rounded-full border border-white/25 bg-black/30 text-white/80 shadow-sm backdrop-blur-sm transition hover:border-white/45 hover:bg-white/15 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/70 sm:right-2 lg:right-3"
                 >
                   <ChevronRight className="h-4 w-4 sm:h-[18px] sm:w-[18px]" />
                 </motion.button>

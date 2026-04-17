@@ -68,6 +68,10 @@ export default function SanctuarySection() {
               integration and closing.
             </p>
 
+            <p className="text-xs sm:text-sm font-sans font-semibold tracking-[0.12em] uppercase text-white/90 mb-6 sm:mb-8">
+              Limited to 15 women — time is running out.
+            </p>
+
             <div className="grid grid-cols-2 gap-x-6 gap-y-5 mb-10 sm:mb-12 max-w-md">
               {features.map(({ label, Icon }) => (
                 <div key={label} className="flex items-center gap-2.5">

@@ -6,6 +6,11 @@ import HomePage from './pages/HomePage'
 import RetreatPage from './pages/RetreatPage'
 import RetreatDetailsPage from './pages/RetreatDetailsPage'
 import WellnessPage from './pages/WellnessPage'
+import MerchLegacyRedirect from './components/MerchLegacyRedirect'
+import MerchCartPage from './pages/MerchCartPage'
+import MerchLayout from './pages/MerchLayout'
+import MerchPage from './pages/MerchPage'
+import MerchProductPage from './pages/MerchProductPage'
 
 function App() {
   useEffect(() => {
@@ -34,7 +39,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <div className="scroll-smooth">
+      <div className="scroll-smooth min-h-[100dvh] min-h-[100svh] overflow-x-clip">
         <Routes>
           <Route
             path="/"
@@ -76,6 +81,14 @@ function App() {
               </>
             }
           />
+          {/* Store: not linked from site nav — only yamunaretreats.com/store */}
+          <Route path="/store" element={<MerchLayout />}>
+            <Route index element={<MerchPage />} />
+            <Route path="cart" element={<MerchCartPage />} />
+            <Route path=":slug" element={<MerchProductPage />} />
+          </Route>
+          <Route path="/merch" element={<MerchLegacyRedirect />} />
+          <Route path="/merch/*" element={<MerchLegacyRedirect />} />
         </Routes>
       </div>
     </BrowserRouter>

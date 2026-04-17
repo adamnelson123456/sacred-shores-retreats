@@ -35,3 +35,6 @@ lerna-debug.log*
 *.sw?
 
 .vercel
+
+# Large hero source — keep .mov on disk only; deploy uses .mp4 (see .vercelignore)
+public/**/*.mov

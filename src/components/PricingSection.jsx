@@ -19,15 +19,15 @@ export default function PricingSection() {
   return (
     <section
       id="pricing"
-      className="py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 md:px-8 lg:px-16 bg-white scroll-mt-20"
+      className="py-12 sm:py-16 md:py-20 lg:py-24 pl-[calc(1rem+env(safe-area-inset-left,0px))] pr-[calc(1rem+env(safe-area-inset-right,0px))] sm:pl-[calc(1.5rem+env(safe-area-inset-left,0px))] sm:pr-[calc(1.5rem+env(safe-area-inset-right,0px))] md:pl-[calc(2rem+env(safe-area-inset-left,0px))] md:pr-[calc(2rem+env(safe-area-inset-right,0px))] lg:pl-[calc(4rem+env(safe-area-inset-left,0px))] lg:pr-[calc(4rem+env(safe-area-inset-right,0px))] bg-white scroll-mt-20"
     >
       <div className="max-w-5xl mx-auto">
         <FadeIn>
           <h2 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-serif font-bold mb-5 sm:mb-6 text-center text-deep-green tracking-tight">
-            Retreat Investment
+            Book your spot
           </h2>
           <p className="text-lg sm:text-xl md:text-2xl text-gray-700 text-center mb-10 sm:mb-12 md:mb-16 lg:mb-20 font-body">
-            Choose the option that feels right for you. Limited to 10–20 women.
+            Join us in Itamambuca — time is running out. Limited to 15 women.
           </p>
         </FadeIn>
 
@@ -47,7 +47,7 @@ export default function PricingSection() {
                   
                   {/* Price with gold styling */}
                   <p className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4 text-gold">
-                    R$ 3.000 per person
+                    R$ 2.500 per person
                   </p>
                   
                   {/* Description */}
@@ -83,9 +83,14 @@ export default function PricingSection() {
               </div>
 
               {/* CTA Button: Full-width container below both columns - Mobile optimized touch target */}
-              <button className="w-full px-8 py-4 sm:py-3.5 rounded-full bg-deep-green text-white font-semibold text-base sm:text-sm md:text-base hover:bg-deep-green/90 hover:scale-105 transition-all duration-300 shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-deep-green focus:ring-offset-2 min-h-[48px] sm:min-h-[44px]">
+              <a
+                href="https://docs.google.com/forms/d/e/1FAIpQLSf7gDgVadWn5xpplzOWDNtkytEn3nII6jnQPUFcEs6006GgIQ/viewform?usp=header"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex w-full items-center justify-center px-8 py-4 sm:py-3.5 rounded-full bg-deep-green text-white font-semibold text-base sm:text-sm md:text-base hover:bg-deep-green/90 hover:scale-105 transition-all duration-300 shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-deep-green focus:ring-offset-2 min-h-[48px] sm:min-h-[44px]"
+              >
                 Reserve Your Spot
-              </button>
+              </a>
             </div>
           </FadeIn>
         </div>

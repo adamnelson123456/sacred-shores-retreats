@@ -48,7 +48,7 @@ export default function Footer() {
   }
 
   return (
-    <footer className="bg-[#E8E4DC] text-[#2a2a2a] pt-14 sm:pt-16 md:pt-20 pb-8 sm:pb-10 px-4 sm:px-6 md:px-10 lg:px-14">
+    <footer className="bg-[#E8E4DC] text-[#2a2a2a] pt-14 sm:pt-16 md:pt-20 pb-[max(2rem,calc(2rem+env(safe-area-inset-bottom,0px)))] sm:pb-10 pl-[calc(1rem+env(safe-area-inset-left,0px))] pr-[calc(1rem+env(safe-area-inset-right,0px))] sm:pl-[calc(1.5rem+env(safe-area-inset-left,0px))] sm:pr-[calc(1.5rem+env(safe-area-inset-right,0px))] md:pl-[calc(2.5rem+env(safe-area-inset-left,0px))] md:pr-[calc(2.5rem+env(safe-area-inset-right,0px))] lg:pl-[calc(3.5rem+env(safe-area-inset-left,0px))] lg:pr-[calc(3.5rem+env(safe-area-inset-right,0px))]">
       <div className="max-w-6xl xl:max-w-7xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-10 lg:gap-16 mb-12 sm:mb-14">
           {/* Brand */}
@@ -72,24 +72,24 @@ export default function Footer() {
               Crafting experiences that bridge the sacred and the everyday. A sanctuary for the soul, a home for the
               seeker.
             </p>
-            <div className="flex items-center gap-4 text-terracotta">
+            <div className="flex items-center gap-2 text-terracotta sm:gap-4">
               <a
                 href="/"
-                className="hover:opacity-70 transition-opacity focus:outline-none focus:ring-2 focus:ring-terracotta focus:ring-offset-2 focus:ring-offset-[#E8E4DC] rounded-full p-1"
+                className="inline-flex min-h-[44px] min-w-[44px] items-center justify-center rounded-full hover:opacity-70 transition-opacity focus:outline-none focus:ring-2 focus:ring-terracotta focus:ring-offset-2 focus:ring-offset-[#E8E4DC]"
                 aria-label="Home"
               >
                 <IconCircleMark className="w-5 h-5" />
               </a>
               <a
                 href="#"
-                className="hover:opacity-70 transition-opacity focus:outline-none focus:ring-2 focus:ring-terracotta focus:ring-offset-2 focus:ring-offset-[#E8E4DC] rounded-full p-1"
+                className="inline-flex min-h-[44px] min-w-[44px] items-center justify-center rounded-full hover:opacity-70 transition-opacity focus:outline-none focus:ring-2 focus:ring-terracotta focus:ring-offset-2 focus:ring-offset-[#E8E4DC]"
                 aria-label="Instagram"
               >
                 <IconInstagram className="w-5 h-5" />
               </a>
               <a
                 href="mailto:hello@yamunaretreats.com"
-                className="hover:opacity-70 transition-opacity focus:outline-none focus:ring-2 focus:ring-terracotta focus:ring-offset-2 focus:ring-offset-[#E8E4DC] rounded-full p-1"
+                className="inline-flex min-h-[44px] min-w-[44px] items-center justify-center rounded-full hover:opacity-70 transition-opacity focus:outline-none focus:ring-2 focus:ring-terracotta focus:ring-offset-2 focus:ring-offset-[#E8E4DC]"
                 aria-label="Email"
               >
                 <IconMail className="w-5 h-5" />
@@ -134,11 +134,11 @@ export default function Footer() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Your email"
-                className="w-full pl-4 pr-12 py-3 rounded-md border border-[#C9C2B6] bg-[#F5F2EC] text-sm text-[#1a1a1a] placeholder:text-gray-400 font-sans focus:outline-none focus:ring-2 focus:ring-terracotta/40 focus:border-terracotta/50"
+                className="w-full min-h-[48px] pl-4 pr-14 py-3 rounded-md border border-[#C9C2B6] bg-[#F5F2EC] text-base text-[#1a1a1a] placeholder:text-gray-400 font-sans focus:outline-none focus:ring-2 focus:ring-terracotta/40 focus:border-terracotta/50"
               />
               <button
                 type="submit"
-                className="absolute right-1 top-1/2 -translate-y-1/2 w-9 h-9 flex items-center justify-center text-terracotta hover:bg-black/[0.04] rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-terracotta"
+                className="absolute right-1 top-1/2 -translate-y-1/2 flex h-11 w-11 min-h-[44px] min-w-[44px] items-center justify-center text-terracotta hover:bg-black/[0.04] rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-terracotta"
                 aria-label="Subscribe"
               >
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">

@@ -16,7 +16,7 @@ export default function Hero() {
       <div className="absolute inset-0 bg-black/50" />
       <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/30 to-black/55" />
 
-      <div className="relative z-10 min-h-[100dvh] flex flex-col items-center justify-center px-4 sm:px-8 pt-24 pb-36 sm:pt-28 sm:pb-40 text-center">
+      <div className="relative z-10 min-h-[100dvh] flex flex-col items-center justify-center pl-[calc(1rem+env(safe-area-inset-left,0px))] pr-[calc(1rem+env(safe-area-inset-right,0px))] sm:pl-[calc(2rem+env(safe-area-inset-left,0px))] sm:pr-[calc(2rem+env(safe-area-inset-right,0px))] pt-24 pb-[max(9rem,calc(8rem+env(safe-area-inset-bottom,0px)))] sm:pt-28 sm:pb-[max(10rem,calc(9rem+env(safe-area-inset-bottom,0px)))] text-center">
         <div className="w-full max-w-4xl mx-auto">
           <FadeIn delay={80}>
             <h1 className="font-display text-white text-[clamp(1.15rem,3.2vw,2.25rem)] sm:text-3xl md:text-4xl lg:text-[2.65rem] font-semibold tracking-[0.16em] uppercase leading-snug mb-8 sm:mb-10 drop-shadow-[0_2px_28px_rgba(0,0,0,0.5)]">

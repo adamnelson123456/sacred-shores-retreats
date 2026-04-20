@@ -22,6 +22,9 @@ export const translations = {
       collection: 'Coleção',
       draft: 'Prévia · não listado na navegação',
       shopNow: 'Ver produto',
+      msrp: 'Preço sugerido',
+      introBody:
+        'Peças e lembranças que levam o retiro para casa — caneca, ecobag, moletom e camiseta. Esta página é uma prévia: preços e disponibilidade serão confirmados antes de qualquer lançamento.',
       continueShopping: 'Continuar comprando',
       cart: 'Carrinho',
       viewCart: 'Ver carrinho',
@@ -35,9 +38,53 @@ export const translations = {
       redirecting: 'Redirecionando…',
       emptyCart: 'Seu carrinho está vazio.',
       secureStripe: 'pagamento seguro com Stripe',
+      itemSingular: 'item',
+      itemPlural: 'itens',
       checkoutCancelled: 'O pagamento foi cancelado. Seu carrinho pode ser atualizado abaixo quando você estiver pronto.',
       thankYou:
         'Obrigado — seu pagamento foi enviado no Stripe Checkout. Você receberá um recibo por e-mail da Stripe quando a cobrança for concluída.',
+      retreatCtaBody:
+        'Prefere sentir a semana ao vivo primeiro? O retiro é onde esses fios fazem sentido.',
+    },
+    merch: {
+      products: {
+        mug: {
+          name: 'Caneca Yamuna',
+          shortDescription: 'Para o chá da manhã e goles lentos depois da prática.',
+          details: [
+            'Uma companhia calma para manhãs devagar — seja escrevendo no diário, tomando chai ou pausando entre sessões. A marca Yamuna mantém o retiro por perto, sem fazer alarde.',
+            'Feita para ficar à vontade na prateleira da cozinha ou na mesa do estúdio. Combine com luz suave e uma respiração profunda.',
+          ],
+          highlights: ['Cerâmica', 'Marca Yamuna', 'Pronta para presentear'],
+        },
+        tote: {
+          name: 'Ecobag Yamuna',
+          shortDescription: 'Carregue a semana — feira, praia e tudo entre um e outro.',
+          details: [
+            'Espaçosa para uma toalha, um livro e as pequenas coisas que deixam um dia mais humano. Alças firmes e estrutura macia que encaixa bem no ombro.',
+            'Leve ao mercado depois da prática ou use para uma caminhada até a água — o logo fica sutil; a semana fica com você.',
+          ],
+          highlights: ['Lona natural', 'Alças reforçadas', 'Uso diário'],
+        },
+        hoodie: {
+          name: 'Moletom Yamuna',
+          shortDescription: 'Camada macia para manhãs frescas e noites perto do mar.',
+          details: [
+            'Um moletom de peso médio para a brisa do oceano e a meditação cedo. O caimento é solto — espaço para se mover, nada apertado quando a respiração é o ponto.',
+            'Vista depois da prática, sobre o biquíni ou na volta para casa quando você quer algo que ainda pareça o retiro.',
+          ],
+          highlights: ['Interior felpudo', 'Caimento confortável', 'Noites costeiras'],
+        },
+        shirt: {
+          name: 'Camiseta Yamuna',
+          shortDescription: 'Camiseta de algodão com uma marca discreta do retiro.',
+          details: [
+            'Algodão respirável com silhueta limpa — fácil de colocar por dentro, fácil de sobrepor. A marca é pequena para a camiseta parecer sua, não um outdoor.',
+            'Use sob uma camisa aberta, com linho ou sozinha quando o dia está quente e a agenda está leve.',
+          ],
+          highlights: ['Toque 100% algodão', 'Branding minimalista', 'Fácil de cuidar'],
+        },
+      },
     },
     common: {
       exploreRetreat: 'Explorar o retiro',
@@ -381,6 +428,9 @@ export const translations = {
       collection: 'Collection',
       draft: 'Draft preview · not listed in navigation',
       shopNow: 'Shop now',
+      msrp: 'MSRP',
+      introBody:
+        'Wearables and keepsakes that carry the retreat home — mug, tote, hoodie, and shirt. This page is a draft: pricing and availability will be confirmed before anything goes live.',
       continueShopping: 'Continue shopping',
       cart: 'Cart',
       viewCart: 'View cart',
@@ -394,9 +444,53 @@ export const translations = {
       redirecting: 'Redirecting…',
       emptyCart: 'Your cart is empty.',
       secureStripe: 'secure payment with Stripe',
+      itemSingular: 'item',
+      itemPlural: 'items',
       checkoutCancelled: 'Checkout was cancelled. Your cart can be updated below whenever you are ready.',
       thankYou:
         'Thank you — your payment was submitted in Stripe Checkout. You will receive a receipt by email from Stripe when the charge completes.',
+      retreatCtaBody:
+        'Prefer to feel the week in person first? The retreat is where these threads make sense.',
+    },
+    merch: {
+      products: {
+        mug: {
+          name: 'Yamuna mug',
+          shortDescription: 'For morning tea and slow sips after practice.',
+          details: [
+            'A calm companion for slow mornings—whether you are journaling, sipping chai, or pausing between sessions. The Yamuna mark keeps the retreat close without shouting.',
+            'Designed to feel at home on a kitchen shelf or a studio desk. Pair it with quiet light and a deep breath.',
+          ],
+          highlights: ['Ceramic', 'Yamuna mark', 'Gift-ready'],
+        },
+        tote: {
+          name: 'Yamuna tote',
+          shortDescription: 'Carry the week — market runs, beach walks, and everything in between.',
+          details: [
+            'Roomy enough for a towel, a book, and the small things that make a day feel human. Sturdy handles and a soft structure that sits well on the shoulder.',
+            'Take it to the market after practice, or load it for a walk to the water—the logo stays subtle; the week stays with you.',
+          ],
+          highlights: ['Natural canvas', 'Reinforced straps', 'Everyday carry'],
+        },
+        hoodie: {
+          name: 'Yamuna hoodie',
+          shortDescription: 'Soft layer for cool mornings and evenings by the water.',
+          details: [
+            'A mid-weight layer for breeze off the ocean and early meditation. The fit is easy—room to move, nothing tight around the ribs when breath is the point.',
+            'Throw it on after practice, over a swimsuit, or on the flight home when you want something that still feels like the retreat.',
+          ],
+          highlights: ['Soft fleece interior', 'Relaxed fit', 'Coastal evenings'],
+        },
+        shirt: {
+          name: 'Yamuna shirt',
+          shortDescription: 'Easy cotton tee with a quiet mark of the retreat.',
+          details: [
+            'Breathable cotton with a clean silhouette—easy to tuck, easy to layer. The mark sits small so the shirt feels like yours, not a billboard.',
+            'Wear it under an open shirt, with linen, or on its own when the day is warm and the schedule is light.',
+          ],
+          highlights: ['100% cotton feel', 'Minimal branding', 'Easy care'],
+        },
+      },
     },
     common: {
       exploreRetreat: 'Explore the retreat',

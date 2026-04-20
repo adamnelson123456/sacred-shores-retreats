@@ -13,7 +13,7 @@ import { useLanguage } from '../i18n/LanguageContext'
 
 export default function MerchPage() {
   const { currency } = useMerchCurrency()
-  const { t } = useLanguage()
+  const { t, get } = useLanguage()
   return (
     <article className="min-w-0 bg-[#FAF8F4] pb-[max(4rem,calc(4rem+env(safe-area-inset-bottom,0px)))] pt-20 text-gray-800 sm:pb-20 sm:pt-24">
       <section className="relative overflow-hidden border-b border-deep-green/[0.07]">
@@ -35,8 +35,7 @@ export default function MerchPage() {
               {t('shop.title')}
             </h1>
             <p className="mx-auto mt-6 max-w-2xl text-center font-body text-base leading-[1.75] text-gray-600 sm:mx-0 sm:text-left sm:text-lg">
-              Wearables and keepsakes that carry the retreat home — mug, tote, hoodie, and shirt. This page is a draft:
-              pricing and availability will be confirmed before anything goes live.
+              {t('shop.introBody')}
             </p>
             <p className="mt-4 text-center font-sans text-xs font-medium uppercase tracking-[0.2em] text-gray-500 sm:text-left">
               {t('shop.draft')}
@@ -67,17 +66,17 @@ export default function MerchPage() {
 
                 <div className="flex flex-1 flex-col px-4 pb-5 pt-8 sm:px-5 sm:pb-6 sm:pt-10">
                   <h3 className="truncate font-serif text-base font-bold leading-snug text-deep-green sm:text-lg">
-                    {p.name}
+                    {get(`merch.products.${p.slug}.name`) || p.name}
                   </h3>
                   <p className="mt-2 max-h-[2.7em] overflow-hidden font-body text-xs leading-snug text-gray-600 sm:text-sm">
-                    {p.shortDescription}
+                    {get(`merch.products.${p.slug}.shortDescription`) || p.shortDescription}
                   </p>
                   <span
                     className="mt-3 block h-px w-10 bg-deep-green/15"
                     aria-hidden
                   />
                   <p className="mt-2.5 font-sans text-[10px] font-semibold uppercase tracking-[0.2em] text-gray-500">
-                    MSRP
+                    {t('shop.msrp')}
                   </p>
                   <p className="mt-1 font-sans text-sm font-semibold tracking-wide text-terracotta-dark sm:text-base">
                     {formatMerchPriceFromBrl(p.priceBrl, currency)}
@@ -99,7 +98,7 @@ export default function MerchPage() {
         <div className="mx-auto max-w-3xl min-w-0 px-4 py-14 text-center sm:px-6 md:px-10 lg:px-12">
           <FadeIn delay={120}>
             <p className="font-body text-base leading-relaxed text-gray-600 sm:text-lg">
-              Prefer to feel the week in person first? The retreat is where these threads make sense.
+              {t('shop.retreatCtaBody')}
             </p>
             <Link
               to="/retreat"

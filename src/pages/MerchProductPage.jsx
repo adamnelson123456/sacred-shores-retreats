@@ -16,10 +16,16 @@ export default function MerchProductPage() {
   const { currency } = useMerchCurrency()
   const { addToCart } = useMerchCart()
   const navigate = useNavigate()
-  const { t } = useLanguage()
+  const { t, get } = useLanguage()
   const { slug } = useParams()
   const [quantity, setQuantity] = useState(1)
   const product = slug ? getMerchBySlug(slug) : undefined
+  const name = product ? get(`merch.products.${product.slug}.name`) || product.name : ''
+  const shortDescription = product
+    ? get(`merch.products.${product.slug}.shortDescription`) || product.shortDescription
+    : ''
+  const details = product ? get(`merch.products.${product.slug}.details`) || product.details : []
+  const highlights = product ? get(`merch.products.${product.slug}.highlights`) || product.highlights : []
 
   useEffect(() => {
     window.scrollTo(0, 0)
@@ -40,7 +46,7 @@ export default function MerchProductPage() {
             <span className="mx-2 text-gray-400" aria-hidden>
               /
             </span>
-            <span className="text-deep-green/80">{product.name}</span>
+            <span className="text-deep-green/80">{name}</span>
           </nav>
         </FadeIn>
 
@@ -49,7 +55,7 @@ export default function MerchProductPage() {
             <div className="mx-auto w-full max-w-[min(100%,21rem)] overflow-hidden rounded-3xl border-2 border-deep-green/15 bg-white shadow-[0_16px_48px_-24px_rgba(15,49,35,0.25)] sm:max-w-[23rem] lg:mx-0 lg:max-w-[26rem]">
               <MerchImageCarousel
                 images={product.images}
-                altBase={product.name}
+                altBase={name}
                 variant="detail"
               />
             </div>
@@ -59,12 +65,12 @@ export default function MerchProductPage() {
             <FadeIn delay={60}>
               <p className="font-sans text-[11px] font-semibold uppercase tracking-[0.3em] text-terracotta">Yamuna Retreat</p>
               <h1 className="mt-3 break-words font-serif text-[clamp(2rem,4vw,3rem)] font-bold leading-[1.1] tracking-tight text-deep-green">
-                {product.name}
+                {name}
               </h1>
-              <p className="mt-4 font-body text-base leading-relaxed text-gray-600 sm:text-lg">{product.shortDescription}</p>
+              <p className="mt-4 font-body text-base leading-relaxed text-gray-600 sm:text-lg">{shortDescription}</p>
               <div className="mt-6 flex w-full min-w-0 flex-col gap-4 sm:flex-row sm:flex-wrap sm:items-end sm:justify-between">
                 <div className="min-w-0">
-                  <p className="font-sans text-[10px] font-semibold uppercase tracking-[0.2em] text-gray-500">MSRP</p>
+                  <p className="font-sans text-[10px] font-semibold uppercase tracking-[0.2em] text-gray-500">{t('shop.msrp')}</p>
                   <p className="mt-1 font-sans text-xl font-semibold tracking-wide text-terracotta-dark sm:text-2xl">
                     {formatMerchPriceFromBrl(product.priceBrl, currency)}
                   </p>
@@ -79,7 +85,7 @@ export default function MerchProductPage() {
 
             <FadeIn delay={120}>
               <div className="mt-8 space-y-4 border-t border-deep-green/10 pt-8">
-                {product.details.map((para, i) => (
+                {details.map((para, i) => (
                   <p key={i} className="font-body text-base leading-[1.8] text-gray-700">
                     {para}
                   </p>
@@ -87,10 +93,10 @@ export default function MerchProductPage() {
               </div>
             </FadeIn>
 
-            {product.highlights?.length > 0 && (
+            {highlights?.length > 0 && (
               <FadeIn delay={160}>
                 <ul className="mt-8 flex flex-wrap gap-2">
-                  {product.highlights.map((h) => (
+                  {highlights.map((h) => (
                     <li
                       key={h}
                       className="rounded-full border border-deep-green/20 bg-white px-4 py-2 font-sans text-xs font-medium uppercase tracking-[0.12em] text-deep-green/85"

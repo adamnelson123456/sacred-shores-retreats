@@ -111,7 +111,7 @@ export default function MerchCartPage() {
           </div>
           <p className="mt-3 font-body text-sm leading-relaxed text-gray-600">
             {itemCount
-              ? `${itemCount} ${itemCount === 1 ? 'item' : 'items'} · ${t('shop.secureStripe')}`
+              ? `${itemCount} ${itemCount === 1 ? t('shop.itemSingular') : t('shop.itemPlural')} · ${t('shop.secureStripe')}`
               : t('shop.emptyCart')}
           </p>
         </FadeIn>

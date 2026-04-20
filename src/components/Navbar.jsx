@@ -126,7 +126,7 @@ function RetreatsDropdown({ light, open, onOpenChange, onItamambucaClick }) {
 export default function Navbar() {
   const { pathname, hash } = useLocation()
   const navigate = useNavigate()
-  const { lang, toggleLang, t } = useLanguage()
+  const { lang, setLang, t } = useLanguage()
   const [scrolled, setScrolled] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [retreatDropdownOpen, setRetreatDropdownOpen] = useState(false)
@@ -285,18 +285,38 @@ export default function Navbar() {
         </div>
 
         <div className="relative z-10 flex items-center justify-end justify-self-end gap-1 sm:gap-2">
-          <button
-            type="button"
-            onClick={toggleLang}
-            className={`min-h-[44px] px-3 rounded-full border text-[10px] font-sans font-semibold uppercase tracking-[0.18em] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 ${
-              light
-                ? 'border-white/35 text-white hover:bg-white/10 focus-visible:ring-white focus-visible:ring-offset-transparent'
-                : 'border-black/[0.12] text-nav-ink hover:bg-black/[0.05] focus-visible:ring-terracotta focus-visible:ring-offset-nav-bg'
+          <div
+            className={`inline-flex overflow-hidden rounded-full border ${
+              light ? 'border-white/35' : 'border-black/[0.12]'
             }`}
+            role="group"
             aria-label={t('nav.toggleLanguage')}
           >
-            {lang === 'pt' ? 'PT' : 'EN'}
-          </button>
+            <button
+              type="button"
+              onClick={() => setLang('pt')}
+              className={`min-h-[44px] px-3 text-[10px] font-sans font-semibold uppercase tracking-[0.18em] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 ${
+                light
+                  ? 'focus-visible:ring-white focus-visible:ring-offset-transparent'
+                  : 'focus-visible:ring-terracotta focus-visible:ring-offset-nav-bg'
+              } ${lang === 'pt' ? (light ? 'bg-white/15 text-white' : 'bg-black/[0.06] text-nav-ink') : light ? 'text-white/90 hover:bg-white/10' : 'text-nav-ink/80 hover:bg-black/[0.05]'}`}
+              aria-pressed={lang === 'pt'}
+            >
+              PT
+            </button>
+            <button
+              type="button"
+              onClick={() => setLang('en')}
+              className={`min-h-[44px] px-3 text-[10px] font-sans font-semibold uppercase tracking-[0.18em] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 ${
+                light
+                  ? 'focus-visible:ring-white focus-visible:ring-offset-transparent'
+                  : 'focus-visible:ring-terracotta focus-visible:ring-offset-nav-bg'
+              } ${lang === 'en' ? (light ? 'bg-white/15 text-white' : 'bg-black/[0.06] text-nav-ink') : light ? 'text-white/90 hover:bg-white/10' : 'text-nav-ink/80 hover:bg-black/[0.05]'}`}
+              aria-pressed={lang === 'en'}
+            >
+              EN
+            </button>
+          </div>
           <Link
             to="/retreat#pricing"
             className={`p-2.5 rounded-full transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 min-w-[44px] min-h-[44px] flex items-center justify-center ${
@@ -420,19 +440,54 @@ export default function Navbar() {
           >
             {t('nav.shop')}
           </NavLink>
-          <button
-            type="button"
-            onClick={() => {
-              toggleLang()
-              setMobileMenuOpen(false)
-            }}
-            className={`block w-full px-3 py-3 rounded-lg font-sans text-sm uppercase tracking-wider text-left ${
-              light ? 'text-white/90 hover:bg-white/10' : 'text-nav-ink hover:bg-black/[0.04]'
-            }`}
-            aria-label={t('nav.toggleLanguage')}
-          >
-            {lang === 'pt' ? 'English' : 'Português'}
-          </button>
+          <div className="px-3 pt-2">
+            <div
+              className={`inline-flex w-full overflow-hidden rounded-full border ${
+                light ? 'border-white/20' : 'border-black/[0.08]'
+              }`}
+              role="group"
+              aria-label={t('nav.toggleLanguage')}
+            >
+              <button
+                type="button"
+                onClick={() => {
+                  setLang('pt')
+                  setMobileMenuOpen(false)
+                }}
+                className={`flex-1 min-h-[44px] px-4 font-sans text-xs font-semibold uppercase tracking-wider transition-colors ${
+                  lang === 'pt'
+                    ? light
+                      ? 'bg-white/15 text-white'
+                      : 'bg-white shadow-sm text-deep-green'
+                    : light
+                      ? 'text-white/90 hover:bg-white/10'
+                      : 'text-nav-ink hover:bg-black/[0.04]'
+                }`}
+                aria-pressed={lang === 'pt'}
+              >
+                PT
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  setLang('en')
+                  setMobileMenuOpen(false)
+                }}
+                className={`flex-1 min-h-[44px] px-4 font-sans text-xs font-semibold uppercase tracking-wider transition-colors ${
+                  lang === 'en'
+                    ? light
+                      ? 'bg-white/15 text-white'
+                      : 'bg-white shadow-sm text-deep-green'
+                    : light
+                      ? 'text-white/90 hover:bg-white/10'
+                      : 'text-nav-ink hover:bg-black/[0.04]'
+                }`}
+                aria-pressed={lang === 'en'}
+              >
+                EN
+              </button>
+            </div>
+          </div>
         </div>
       )}
     </nav>

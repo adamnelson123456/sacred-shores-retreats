@@ -3,17 +3,13 @@
  */
 import { Link } from 'react-router-dom'
 import FadeIn from './FadeIn'
+import { useLanguage } from '../i18n/LanguageContext'
 
 const GIOVANNA_IMAGE_SRC = encodeURI('/images/gio nature!.jpeg')
 
-const highlights = [
-  'Ayurveda for daily life',
-  "Women's health & cyclical living",
-  'Self-care rituals & abhyanga',
-  'Guided reflection & integration circles',
-]
-
 export default function HostsSection() {
+  const { t, get } = useLanguage()
+  const highlights = get('hosts.highlights') || []
   return (
     <section
       id="hosts"
@@ -23,15 +19,13 @@ export default function HostsSection() {
         <FadeIn>
           <header className="mb-14 max-w-3xl sm:mb-16 md:mb-20">
             <p className="mb-3 font-sans text-[11px] font-semibold uppercase tracking-[0.22em] text-[#C48B58] sm:mb-4 sm:text-xs">
-              Founder &amp; facilitator
+              {t('hosts.kicker')}
             </p>
             <h2 className="mb-5 font-serif text-[clamp(1.85rem,4.5vw,3.25rem)] leading-[1.12] tracking-tight text-[#1A1F2B] sm:mb-6">
-              Meet the founder Giovanna
+              {t('hosts.title')}
             </h2>
             <p className="font-body text-lg leading-relaxed text-[#4A4A4A] sm:text-xl">
-              Yamuna Retreats is held by Giovanna—your Ayurvedic guide and space holder for the Itamambuca gathering.
-              She leads with steadiness and heart: clear structure, room to soften, and a deep respect for how women heal
-              in community and in nature.
+              {t('hosts.body')}
             </p>
           </header>
         </FadeIn>
@@ -42,7 +36,7 @@ export default function HostsSection() {
               <div className="aspect-[3/4] w-full sm:aspect-[4/5] lg:aspect-[3/4]">
                 <img
                   src={GIOVANNA_IMAGE_SRC}
-                  alt="Giovanna outdoors — founder of Yamuna Retreats and retreat facilitator"
+                  alt={t('hosts.imageAlt')}
                   width={800}
                   height={1067}
                   className="h-full w-full object-cover object-[center_15%]"
@@ -56,10 +50,7 @@ export default function HostsSection() {
           <FadeIn delay={120} className="min-w-0 lg:col-span-7">
             <div className="lg:sticky lg:top-28">
               <p className="mb-8 font-sans text-base leading-relaxed text-[#4A4A4A] sm:mb-10 sm:text-[17px] sm:leading-[1.7]">
-                Giovanna is an Ayurvedic therapist and women&apos;s wellness guide, trained in Brazil and abroad. She
-                specializes in helping women regulate digestion, hormones, and the nervous system through simple daily
-                rituals—then carries that same thread into retreat: sound, breath, forest and sea, and the quiet courage
-                of coming back to yourself.
+                {t('hosts.bio')}
               </p>
 
               <ul className="mb-12 space-y-3 border-t border-black/[0.08] pt-8 sm:mb-14">
@@ -78,7 +69,7 @@ export default function HostsSection() {
                 to="/learn-more"
                 className="inline-block font-sans text-sm font-medium text-[#1A1F2B] underline decoration-black/25 decoration-1 underline-offset-[5px] transition-colors hover:decoration-[#C48B58] hover:text-[#1A1F2B] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#C48B58] focus-visible:ring-offset-2 focus-visible:ring-offset-[#F7F3EE] rounded-sm"
               >
-                Read the full story
+                {t('hosts.readStory')}
               </Link>
             </div>
           </FadeIn>

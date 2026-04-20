@@ -3,6 +3,7 @@
  */
 import { Link } from 'react-router-dom'
 import FadeIn from './FadeIn'
+import { useLanguage } from '../i18n/LanguageContext'
 
 /** Surf & ocean — optional surf during the week; swap for /public/images/… when you have your own shot. */
 const retreatImage =
@@ -40,36 +41,30 @@ function IconSound({ className = 'w-5 h-5' }) {
   )
 }
 
-const features = [
-  { label: 'Yoga & ocean rhythm', Icon: IconWave },
-  { label: 'Atlantic rainforest', Icon: IconForest },
-  { label: 'Sound baths & kirtan', Icon: IconSound },
-]
-
 export default function SanctuarySection() {
+  const { t } = useLanguage()
+  const features = [
+    { label: t('sanctuary.features.0'), Icon: IconWave },
+    { label: t('sanctuary.features.1'), Icon: IconForest },
+    { label: t('sanctuary.features.2'), Icon: IconSound },
+  ]
   return (
     <section id="sanctuary" className="w-full scroll-mt-20">
       <div className="grid grid-cols-1 lg:grid-cols-2 lg:min-h-[min(85vh,720px)]">
         <FadeIn>
           <div className="bg-deep-green text-white flex flex-col justify-center px-8 sm:px-10 md:px-12 lg:px-14 xl:px-16 py-14 sm:py-16 lg:py-12 order-2 lg:order-1">
             <p className="text-[11px] sm:text-xs font-sans font-semibold tracking-[0.24em] uppercase text-white/90 mb-4 sm:mb-5">
-              Itamambuca · Ubatuba
+              {t('sanctuary.kicker')}
             </p>
             <h2 className="font-serif text-3xl sm:text-4xl md:text-[2.65rem] lg:text-5xl leading-[1.12] tracking-tight mb-6 sm:mb-8 max-w-[18ch]">
-              The
-              <br />
-              Itamambuca
-              <br />
-              Retreat
+              {t('sanctuary.title')}
             </h2>
             <p className="text-sm sm:text-base text-white/85 font-sans leading-relaxed max-w-lg mb-8 sm:mb-10">
-              Wed–Sun between lush Atlantic forest and the sea—Ayurvedic workshops, optional surf, forest bathing, and
-              evenings of sound and kirtan. Structure with room to breathe: a full arc from arrival and intention to
-              integration and closing.
+              {t('sanctuary.body')}
             </p>
 
             <p className="text-xs sm:text-sm font-sans font-semibold tracking-[0.12em] uppercase text-white/90 mb-6 sm:mb-8">
-              Limited to 15 women — time is running out.
+              {t('sanctuary.limit')}
             </p>
 
             <div className="grid grid-cols-2 gap-x-6 gap-y-5 mb-10 sm:mb-12 max-w-md">
@@ -88,13 +83,13 @@ export default function SanctuarySection() {
                 to="/retreat#retreat-flow"
                 className="inline-flex items-center justify-center px-6 sm:px-7 py-3 rounded-md border border-white/90 text-white text-[11px] sm:text-xs font-sans font-semibold uppercase tracking-[0.16em] hover:bg-white/10 transition-colors focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-deep-green min-h-[44px]"
               >
-                Daily rhythm
+                {t('sanctuary.ctaA')}
               </Link>
               <Link
                 to="/retreat#pricing"
                 className="inline-flex items-center justify-center px-6 sm:px-7 py-3 rounded-md border border-white/35 text-white/95 text-[11px] sm:text-xs font-sans font-semibold uppercase tracking-[0.16em] hover:bg-white/10 transition-colors focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-deep-green min-h-[44px]"
               >
-                Book your retreat
+                {t('sanctuary.ctaB')}
               </Link>
             </div>
           </div>
@@ -104,7 +99,7 @@ export default function SanctuarySection() {
           <div className="relative min-h-[320px] sm:min-h-[400px] lg:min-h-0 h-full order-1 lg:order-2">
             <img
               src={retreatImage}
-              alt="Surfer on a sunlit wave—optional ocean time during the Itamambuca retreat"
+              alt={t('sanctuary.imageAlt')}
               className="absolute inset-0 h-full w-full bg-deep-green/20 object-cover object-[center_35%] sm:object-center"
               width={2000}
               height={1333}
@@ -114,7 +109,7 @@ export default function SanctuarySection() {
             <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-black/25" aria-hidden />
             <div className="absolute bottom-6 sm:bottom-8 left-1/2 -translate-x-1/2 w-[calc(100%-2rem)] max-w-md px-5 py-4 sm:py-5 bg-black/60 backdrop-blur-[2px] text-center">
               <p className="font-serif text-lg sm:text-xl md:text-2xl text-white italic leading-snug">
-                Between jungle and ocean, something begins to shift.
+                {t('sanctuary.caption')}
               </p>
             </div>
           </div>

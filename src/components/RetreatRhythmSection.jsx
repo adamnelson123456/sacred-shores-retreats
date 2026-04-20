@@ -3,29 +3,18 @@
  * Forest layer: `PRINCIPLES_FOREST_BG`; opacity on the image div (currently `opacity-[0.2]`).
  */
 import FadeIn from './FadeIn'
+import { useLanguage } from '../i18n/LanguageContext'
 
 const PRINCIPLES_FOREST_BG =
   'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=2000&q=80'
 
-const principles = [
-  {
-    label: 'Wisdom in the body',
-    title: 'Ayurveda you can live',
-    body: 'We treat classical insight as a companion, not a test. Dinacharya, nourishment, and gentle ritual are offered so your nervous system can understand—not so you can perform “wellness” for anyone else.',
-  },
-  {
-    label: 'The land teaches',
-    title: 'Forest, salt, and sky',
-    body: 'Jungle humidity, ocean light, and unhurried coastal time are part of the curriculum. We choose places where the world stays vivid so rest and honesty don’t have to be invented from scratch.',
-  },
-  {
-    label: 'Held in community',
-    title: 'Depth without the spotlight',
-    body: 'Small groups, clear boundaries, and leadership that doesn’t confuse charisma with care. Laughter and silence both belong; belonging is built through consistency, not spectacle.',
-  },
-]
-
 export default function RetreatRhythmSection() {
+  const { t } = useLanguage()
+  const principles = [
+    { label: t('principles.items.0.label'), title: t('principles.items.0.title'), body: t('principles.items.0.body') },
+    { label: t('principles.items.1.label'), title: t('principles.items.1.title'), body: t('principles.items.1.body') },
+    { label: t('principles.items.2.label'), title: t('principles.items.2.title'), body: t('principles.items.2.body') },
+  ]
   return (
     <section
       id="yamuna-principles"
@@ -44,14 +33,13 @@ export default function RetreatRhythmSection() {
         <FadeIn>
           <header className="mb-12 max-w-2xl sm:mb-14 md:mb-16">
             <p className="mb-3 font-sans text-[11px] font-semibold uppercase tracking-[0.22em] text-gold sm:mb-4 sm:text-xs">
-              How we work
+              {t('principles.kicker')}
             </p>
             <h2 className="mb-4 font-serif text-3xl leading-tight tracking-tight text-white sm:mb-5 sm:text-4xl md:text-5xl">
-              Principles of Yamuna Retreats
+              {t('principles.title')}
             </h2>
             <p className="font-body text-base leading-relaxed text-white/80 sm:text-lg">
-              These are the through-lines behind every gathering—whether you meet us on the São Paulo coast or in
-              another chapter of the work. They keep the week honest when the schedule flexes and the weather shifts.
+              {t('principles.body')}
             </p>
           </header>
         </FadeIn>

@@ -4,6 +4,7 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { YAMUNA_LOGO_SRC } from '../constants/brand'
+import { useLanguage } from '../i18n/LanguageContext'
 
 function IconCircleMark({ className = 'w-5 h-5' }) {
   return (
@@ -33,15 +34,10 @@ function IconMail({ className = 'w-5 h-5' }) {
   )
 }
 
-const exploreLinks = [
-  { label: 'Privacy policy', href: '#' },
-  { label: 'Terms of service', href: '#' },
-  { label: 'Sustainability', href: '#' },
-  { label: 'Contact us', href: 'mailto:hello@yamunaretreats.com' },
-]
-
 export default function Footer() {
   const [email, setEmail] = useState('')
+  const { t, get } = useLanguage()
+  const exploreLinks = get('footer.exploreLinks') || []
 
   function handleJournalSubmit(e) {
     e.preventDefault()
@@ -69,28 +65,27 @@ export default function Footer() {
               </Link>
             </div>
             <p className="text-sm text-gray-600 font-sans leading-relaxed max-w-xs mb-6">
-              Crafting experiences that bridge the sacred and the everyday. A sanctuary for the soul, a home for the
-              seeker.
+              {t('footer.tagline')}
             </p>
             <div className="flex items-center gap-2 text-terracotta sm:gap-4">
               <a
                 href="/"
                 className="inline-flex min-h-[44px] min-w-[44px] items-center justify-center rounded-full hover:opacity-70 transition-opacity focus:outline-none focus:ring-2 focus:ring-terracotta focus:ring-offset-2 focus:ring-offset-[#E8E4DC]"
-                aria-label="Home"
+                aria-label={t('footer.home')}
               >
                 <IconCircleMark className="w-5 h-5" />
               </a>
               <a
                 href="#"
                 className="inline-flex min-h-[44px] min-w-[44px] items-center justify-center rounded-full hover:opacity-70 transition-opacity focus:outline-none focus:ring-2 focus:ring-terracotta focus:ring-offset-2 focus:ring-offset-[#E8E4DC]"
-                aria-label="Instagram"
+                aria-label={t('footer.instagram')}
               >
                 <IconInstagram className="w-5 h-5" />
               </a>
               <a
                 href="mailto:hello@yamunaretreats.com"
                 className="inline-flex min-h-[44px] min-w-[44px] items-center justify-center rounded-full hover:opacity-70 transition-opacity focus:outline-none focus:ring-2 focus:ring-terracotta focus:ring-offset-2 focus:ring-offset-[#E8E4DC]"
-                aria-label="Email"
+                aria-label={t('footer.email')}
               >
                 <IconMail className="w-5 h-5" />
               </a>
@@ -100,7 +95,7 @@ export default function Footer() {
           {/* Explore */}
           <div>
             <h4 className="text-[11px] font-sans font-semibold tracking-[0.2em] uppercase text-terracotta mb-5">
-              Explore
+              {t('footer.explore')}
             </h4>
             <ul className="space-y-3">
               {exploreLinks.map((item) => (
@@ -119,27 +114,27 @@ export default function Footer() {
           {/* Journal — anchor for nav “Journal” link on home */}
           <div id="journal" className="scroll-mt-20">
             <h4 className="text-[11px] font-sans font-semibold tracking-[0.2em] uppercase text-terracotta mb-5">
-              The journal
+              {t('footer.journalTitle')}
             </h4>
             <p className="text-sm text-gray-600 font-sans leading-relaxed mb-4 max-w-sm">
-              Receive seasonal reflections and sanctuary updates.
+              {t('footer.journalBody')}
             </p>
             <form onSubmit={handleJournalSubmit} className="relative max-w-sm">
               <label htmlFor="footer-email" className="sr-only">
-                Email for newsletter
+                {t('footer.newsletterLabel')}
               </label>
               <input
                 id="footer-email"
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="Your email"
+                placeholder={t('footer.emailPlaceholder')}
                 className="w-full min-h-[48px] pl-4 pr-14 py-3 rounded-md border border-[#C9C2B6] bg-[#F5F2EC] text-base text-[#1a1a1a] placeholder:text-gray-400 font-sans focus:outline-none focus:ring-2 focus:ring-terracotta/40 focus:border-terracotta/50"
               />
               <button
                 type="submit"
                 className="absolute right-1 top-1/2 -translate-y-1/2 flex h-11 w-11 min-h-[44px] min-w-[44px] items-center justify-center text-terracotta hover:bg-black/[0.04] rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-terracotta"
-                aria-label="Subscribe"
+                aria-label={t('footer.subscribe')}
               >
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
@@ -151,7 +146,7 @@ export default function Footer() {
 
         <div className="border-t border-[#D0C9BE] pt-8 text-center">
           <p className="text-[10px] sm:text-[11px] font-sans tracking-[0.14em] uppercase text-gray-400">
-            © 2026 Yamuna Retreats. Crafted for the soul.
+            {t('footer.copyright')}
           </p>
         </div>
       </div>

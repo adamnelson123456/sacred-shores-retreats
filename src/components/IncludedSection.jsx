@@ -2,26 +2,17 @@
  * Retreat page — what's included (Itamambuca / Ubatuba arc).
  */
 import FadeIn from './FadeIn'
-
-const includedItems = [
-  'Four nights in the Itamambuca / Ubatuba setting',
-  'Plant-based meals and nourishing snacks',
-  'Daily yoga, breath, and integration time',
-  'Ayurvedic workshops: dinacharya, abhyanga, food & cooking',
-  'Optional surf sessions and ocean time',
-  'Forest bathing and guided meditation in the rainforest',
-  'Evening sound baths, kirtan, and shared meals',
-  'Opening intention (Sankalpa) and closing integration circle',
-  'Pre-retreat preparation notes and a guest connection channel before arrival',
-]
+import { useLanguage } from '../i18n/LanguageContext'
 
 export default function IncludedSection() {
+  const { t, get } = useLanguage()
+  const includedItems = get('included.items') || []
   return (
     <section className="py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 md:px-8 lg:px-16 bg-white">
       <div className="max-w-5xl mx-auto">
         <FadeIn>
           <h2 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-serif font-bold mb-10 sm:mb-12 md:mb-16 text-center text-deep-green tracking-tight">
-            What&apos;s Included
+            {t('included.title')}
           </h2>
         </FadeIn>
 

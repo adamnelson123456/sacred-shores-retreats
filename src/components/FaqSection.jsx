@@ -3,25 +3,7 @@
  */
 import { useId, useState } from 'react'
 import FadeIn from './FadeIn'
-
-const faqs = [
-  {
-    q: 'How do I get to Itamambuca?',
-    a: 'Add your nearest airports, recommended arrival times, and whether you arrange shuttles or carpooling. Many guests appreciate one clear paragraph plus a map link.',
-  },
-  {
-    q: 'What should I pack?',
-    a: 'Layers for jungle mornings and warm afternoons, swimwear, reef-safe sunscreen, a shawl for sound and kirtan, sturdy sandals, and anything you need for personal practice (journal, etc.).',
-  },
-  {
-    q: 'Do I need yoga or surf experience?',
-    a: 'Sessions are offered with options for different levels. Replace this with how you welcome beginners, what “optional surf” means, and how you keep the container safe and inclusive.',
-  },
-  {
-    q: 'What is included in the retreat rate?',
-    a: 'Point guests back to the “What’s included” list above, and note anything extra (flights, airport transfers, travel insurance, single supplements). Keep language kind and specific.',
-  },
-]
+import { useLanguage } from '../i18n/LanguageContext'
 
 function Chevron({ className }) {
   return (
@@ -32,8 +14,10 @@ function Chevron({ className }) {
 }
 
 export default function FaqSection() {
+  const { t, get } = useLanguage()
   const baseId = useId()
   const [openIndex, setOpenIndex] = useState(null)
+  const faqs = get('faq.items') || []
 
   return (
     <section
@@ -44,14 +28,13 @@ export default function FaqSection() {
         <FadeIn>
           <header className="mb-10 text-center sm:mb-12 sm:text-left">
             <p className="mb-3 font-sans text-[11px] font-semibold uppercase tracking-[0.22em] text-[#6B5344] sm:mb-4 sm:text-xs">
-              Questions
+              {t('faq.kicker')}
             </p>
             <h2 className="font-serif text-3xl leading-tight tracking-tight text-[#2C2419] sm:text-4xl md:text-5xl">
-              Before you arrive
+              {t('faq.title')}
             </h2>
             <p className="mx-auto mt-4 max-w-xl font-body text-base leading-relaxed text-gray-600 sm:mx-0">
-              Practical notes for the Itamambuca gathering—travel, packing, and what to expect. Write to us if your
-              question is not covered here.
+              {t('faq.body')}
             </p>
           </header>
         </FadeIn>

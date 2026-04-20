@@ -5,6 +5,7 @@
  */
 import { useState, useEffect } from 'react'
 import { motion, useReducedMotion, AnimatePresence } from 'framer-motion'
+import { useLanguage } from '../i18n/LanguageContext'
 
 /** Viewport: how much of the section must be visible before animating (0–1). */
 const VIEW_AMOUNT = 0.35
@@ -13,30 +14,19 @@ const VIEW_AMOUNT = 0.35
 const FLOAT_LOOP = { duration: 5.5, repeat: Infinity, ease: 'easeInOut' }
 
 /** Subtitle cycle — add/remove strings anytime. */
-const ROTATING_WORDS = [
-  'prayer',
-  'nature',
-  'retreat',
-  'community',
-  'ocean',
-  'song',
-  'love',
-  'stillness',
-  'breath',
-]
-
 const WORD_INTERVAL_MS = 1700
 
-function RotatingWords({ prefersReducedMotion, softEase }) {
+function RotatingWords({ prefersReducedMotion, softEase, words }) {
   const [index, setIndex] = useState(0)
 
   useEffect(() => {
     if (prefersReducedMotion) return undefined
+    if (!words?.length) return undefined
     const id = setInterval(() => {
-      setIndex((i) => (i + 1) % ROTATING_WORDS.length)
+      setIndex((i) => (i + 1) % words.length)
     }, WORD_INTERVAL_MS)
     return () => clearInterval(id)
-  }, [prefersReducedMotion])
+  }, [prefersReducedMotion, words?.length])
 
   const sharedClass =
     'font-serif text-[clamp(1.65rem,5.75vw,2.65rem)] font-normal italic tracking-[0.08em] text-[#6B635C] sm:tracking-[0.1em]'
@@ -60,7 +50,7 @@ function RotatingWords({ prefersReducedMotion, softEase }) {
   if (prefersReducedMotion) {
     return (
       <div className="mt-1 w-full text-center sm:mt-0">
-        <span className={sharedClass}>{ROTATING_WORDS[0]}</span>
+        <span className={sharedClass}>{words[0] || ''}</span>
       </div>
     )
   }
@@ -73,14 +63,14 @@ function RotatingWords({ prefersReducedMotion, softEase }) {
     >
       <AnimatePresence mode="wait" initial={false}>
         <motion.span
-          key={ROTATING_WORDS[index]}
+          key={words[index]}
           variants={wordMotion}
           initial="initial"
           animate="animate"
           exit="exit"
           className={`absolute inset-0 flex items-center justify-center ${sharedClass}`}
         >
-          {ROTATING_WORDS[index]}
+          {words[index]}
         </motion.span>
       </AnimatePresence>
     </div>
@@ -89,6 +79,8 @@ function RotatingWords({ prefersReducedMotion, softEase }) {
 
 export default function ReturnSection() {
   const prefersReducedMotion = useReducedMotion()
+  const { t, get } = useLanguage()
+  const words = get('return.words') || []
 
   const softEase = [0.16, 1, 0.3, 1]
 
@@ -124,7 +116,7 @@ export default function ReturnSection() {
             animate={prefersReducedMotion ? false : { y: [0, -2.5, 0] }}
             transition={prefersReducedMotion ? undefined : FLOAT_LOOP}
           >
-            return to…
+            {t('return.title')}
           </motion.span>
         </motion.h2>
 
@@ -136,7 +128,7 @@ export default function ReturnSection() {
           transition={subTransition}
         >
           <div className="-translate-x-2 sm:-translate-x-2.5 md:-translate-x-3">
-            <RotatingWords prefersReducedMotion={prefersReducedMotion} softEase={softEase} />
+            <RotatingWords prefersReducedMotion={prefersReducedMotion} softEase={softEase} words={words} />
           </div>
         </motion.div>
       </div>

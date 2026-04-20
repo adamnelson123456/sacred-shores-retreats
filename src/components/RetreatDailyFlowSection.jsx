@@ -3,6 +3,7 @@
  * Anchor `retreat-flow` kept for existing CTAs.
  */
 import FadeIn from './FadeIn'
+import { useLanguage } from '../i18n/LanguageContext'
 
 function IconTile({ children }) {
   return (
@@ -12,12 +13,13 @@ function IconTile({ children }) {
   )
 }
 
-const pillars = [
-  {
-    titleBefore: 'You’re carrying more than',
-    titleAccent: 'your fair share',
-    body: 'You hold space for others—and your nervous system is tired of being the last priority. You want a week where slowing down is allowed, meals are real, and you don’t have to explain why rest matters.',
-    icon: (
+function getPillars(t) {
+  return [
+    {
+      titleBefore: t('retreatFlow.pillars.0.titleBefore'),
+      titleAccent: t('retreatFlow.pillars.0.titleAccent'),
+      body: t('retreatFlow.pillars.0.body'),
+      icon: (
       <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" aria-hidden>
         <path
           strokeLinecap="round"
@@ -25,13 +27,13 @@ const pillars = [
           d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"
         />
       </svg>
-    ),
-  },
-  {
-    titleBefore: 'You want wisdom you can live in',
-    titleAccent: 'your body',
-    body: 'Ayurveda, breath, sound, and gentle movement appeal to you as languages—not trends. You like learning when it’s grounded, human-sized, and something you can carry home without a performance.',
-    icon: (
+      ),
+    },
+    {
+      titleBefore: t('retreatFlow.pillars.1.titleBefore'),
+      titleAccent: t('retreatFlow.pillars.1.titleAccent'),
+      body: t('retreatFlow.pillars.1.body'),
+      icon: (
       <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" aria-hidden>
         <path
           strokeLinecap="round"
@@ -39,13 +41,13 @@ const pillars = [
           d="M12 21c-4.5-3.5-7-6.5-7-10a4 4 0 017.5-2 4 4 0 017.5 2c0 3.5-2.5 6.5-7 10z"
         />
       </svg>
-    ),
-  },
-  {
-    titleBefore: 'You’re done',
-    titleAccent: 'performing wellness',
-    body: 'Small groups, honest conversation, and comfortable silence sound like oxygen. The ocean and forest matter to you as co-teachers—and you’re ready for a shoreline week that feels spacious, not staged.',
-    icon: (
+      ),
+    },
+    {
+      titleBefore: t('retreatFlow.pillars.2.titleBefore'),
+      titleAccent: t('retreatFlow.pillars.2.titleAccent'),
+      body: t('retreatFlow.pillars.2.body'),
+      icon: (
       <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" aria-hidden>
         <path
           strokeLinecap="round"
@@ -53,11 +55,14 @@ const pillars = [
           d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
         />
       </svg>
-    ),
-  },
-]
+      ),
+    },
+  ]
+}
 
 export default function RetreatDailyFlowSection() {
+  const { t } = useLanguage()
+  const pillars = getPillars(t)
   return (
     <section
       id="retreat-flow"
@@ -66,11 +71,10 @@ export default function RetreatDailyFlowSection() {
       <div className="mx-auto max-w-5xl">
         <FadeIn>
           <h2 className="text-center font-sans text-[clamp(1.65rem,4vw,2.35rem)] font-bold leading-tight tracking-tight text-neutral-900">
-            This retreat is for you if…
+            {t('retreatFlow.title')}
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-center font-sans text-base leading-relaxed text-gray-600 sm:mt-5 sm:text-lg">
-            You don’t need credentials in Ayurveda or a camera-ready practice—only honesty about what you need. If
-            these three sound familiar, you already fit here.
+            {t('retreatFlow.body')}
           </p>
         </FadeIn>
 

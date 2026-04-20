@@ -4,11 +4,12 @@ import { translations } from './translations'
 const STORAGE_KEY = 'yamuna.lang'
 
 const LanguageContext = createContext(
-  /** @type {{ lang: 'pt'|'en', setLang: (l: 'pt'|'en') => void, toggleLang: () => void, t: (key: string) => string }} */ ({
+  /** @type {{ lang: 'pt'|'en', setLang: (l: 'pt'|'en') => void, toggleLang: () => void, t: (key: string) => string, get: (key: string) => any }} */ ({
     lang: 'pt',
     setLang: () => {},
     toggleLang: () => {},
     t: (k) => k,
+    get: () => undefined,
   }),
 )
 
@@ -52,19 +53,27 @@ export function LanguageProvider({ children }) {
     document.documentElement.lang = lang === 'pt' ? 'pt-BR' : 'en'
   }, [lang])
 
-  const t = useCallback(
+  const get = useCallback(
     (key) => {
       const table = translations[lang] || translations.pt
       const value = getFromKey(table, key)
-      if (typeof value === 'string') return value
-      const fallback = getFromKey(translations.pt, key)
-      if (typeof fallback === 'string') return fallback
-      return key
+      if (value !== undefined) return value
+      return getFromKey(translations.pt, key)
     },
     [lang],
   )
 
-  const value = useMemo(() => ({ lang, setLang, toggleLang, t }), [lang, setLang, toggleLang, t])
+  const t = useCallback(
+    (key) => {
+      const value = get(key)
+      if (typeof value === 'string') return value
+      if (typeof value === 'number') return String(value)
+      return key
+    },
+    [get],
+  )
+
+  const value = useMemo(() => ({ lang, setLang, toggleLang, t, get }), [lang, setLang, toggleLang, t, get])
 
   return <LanguageContext.Provider value={value}>{children}</LanguageContext.Provider>
 }

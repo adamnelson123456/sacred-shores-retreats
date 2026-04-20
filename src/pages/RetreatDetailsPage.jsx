@@ -119,15 +119,10 @@ export default function RetreatDetailsPage() {
             </h2>
             <div className="mt-10 space-y-7 font-body text-base leading-[1.75] text-gray-700 sm:text-lg">
               <p className="border-l-2 border-hero-gold/45 pl-6 sm:pl-8">
-                Giovanna&apos;s work grew from Ayurveda, women&apos;s health, and the quiet discipline of showing up
-                for the body when it whispers instead of shouts. Long before there was a logo, there were kitchens,
-                consultation rooms, and circles where she translated ancient maps into something livable for modern
-                nervous systems.
+                {t('aboutPage.threadP1')}
               </p>
               <p>
-                Yamuna Retreats emerged when that work needed a wider vessel—not louder marketing, but a clearer home
-                for her voice: a place where sound, ritual, nourishment, and landscape could sit together without rushing
-                anyone to perform wellness for a camera.
+                {t('aboutPage.threadP2')}
               </p>
             </div>
           </FadeIn>
@@ -161,11 +156,12 @@ export default function RetreatDetailsPage() {
             </FadeIn>
             <FadeIn delay={100}>
               <blockquote className="font-serif text-[clamp(1.5rem,3.5vw,2.15rem)] font-medium italic leading-snug text-white/95">
-                &ldquo;I did not name Yamuna Retreats to sound exotic—I named it so the work could breathe with me when I
-                crossed oceans and seasons.&rdquo;
+                {t('aboutPage.quote')}
               </blockquote>
               <div className="mt-8 h-px w-16 bg-hero-gold/60" aria-hidden />
-              <p className="mt-6 font-sans text-xs font-semibold uppercase tracking-[0.22em] text-white/55">— Giovanna</p>
+              <p className="mt-6 font-sans text-xs font-semibold uppercase tracking-[0.22em] text-white/55">
+                {t('aboutPage.quoteBy')}
+              </p>
             </FadeIn>
           </div>
         </div>
@@ -180,16 +176,13 @@ export default function RetreatDetailsPage() {
           <FadeIn>
             <p className="mb-4 flex items-center justify-center gap-3 font-sans text-[11px] font-semibold uppercase tracking-[0.28em] text-gold sm:justify-start">
               <span className="h-px w-8 bg-hero-gold/70" aria-hidden />
-              Place
+              {t('aboutPage.placeKicker')}
             </p>
             <h2 className="text-center font-serif text-3xl font-bold tracking-tight text-deep-green sm:text-left sm:text-4xl md:text-[2.35rem]">
-              Why the Atlantic coast
+              {t('aboutPage.placeTitle')}
             </h2>
             <p className="mx-auto mt-8 max-w-[42rem] text-center font-body text-base leading-[1.75] text-gray-700 sm:mx-0 sm:text-left sm:text-lg">
-              Brazil&apos;s shoreline kept calling her back—Ubatuba, Itamambuca, the overlap of rainforest and salt. The
-              humidity, the sound of the sea, and the slower civic rhythm matched what she was already asking of
-              herself: fewer shortcuts, more honesty with the body. Yamuna Retreats found its footing there because the
-              geography refused to let the work become abstract.
+              {t('aboutPage.placeBody')}
             </p>
           </FadeIn>
           <FadeIn delay={100}>
@@ -219,20 +212,17 @@ export default function RetreatDetailsPage() {
             <FadeIn delay={80}>
               <p className="mb-4 flex items-center gap-3 font-sans text-[11px] font-semibold uppercase tracking-[0.28em] text-terracotta">
                 <span className="h-px w-8 bg-hero-gold/70" aria-hidden />
-                Now
+                {t('aboutPage.nowKicker')}
               </p>
               <h2 className="font-serif text-3xl font-bold tracking-tight text-deep-green sm:text-4xl md:text-[2.35rem]">
-                What Yamuna Retreats is today
+                {t('aboutPage.nowTitle')}
               </h2>
               <div className="mt-10 space-y-7 font-body text-base leading-[1.75] text-gray-700 sm:text-lg">
                 <p>
-                  Today it is the umbrella for everything she has learned to steward well: Ayurvedic care, sound, shared
-                  meals, writing, silence, and the stubborn belief that beauty counts as medicine. It is still small by
-                  design—anchored in relationship, not volume.
+                  {t('aboutPage.nowP1')}
                 </p>
                 <p className="rounded-2xl border border-deep-green/[0.08] bg-white/60 px-6 py-5 text-[15px] leading-relaxed shadow-sm sm:px-7 sm:py-6">
-                  If you came here to understand the why before anything else, you are in the right place. The rest of
-                  the site carries the practical details; this page holds the story of how the name met the shore.
+                  {t('aboutPage.nowP2')}
                 </p>
               </div>
             </FadeIn>

@@ -3,18 +3,11 @@
  * Refined: Balanced two-column layout, refined shadow/radius, proper button placement
  */
 import FadeIn from './FadeIn'
+import { useLanguage } from '../i18n/LanguageContext'
 
 export default function PricingSection() {
-  const includedItems = [
-    'Four nights — Itamambuca / Ubatuba setting',
-    'Daily yoga, breath & integration time',
-    'Ayurveda workshops, dinacharya & abhyanga',
-    'Food & Ayurveda workshop + cooking session',
-    'Optional surf & forest bathing / meditation',
-    'Evening sound baths, kirtan & shared meals',
-    'Opening Sankalpa & closing integration circle',
-    'Plant-based meals, snacks & retreat materials',
-  ]
+  const { t, get } = useLanguage()
+  const includedItems = get('pricing.included') || []
 
   return (
     <section
@@ -24,10 +17,10 @@ export default function PricingSection() {
       <div className="max-w-5xl mx-auto">
         <FadeIn>
           <h2 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-serif font-bold mb-5 sm:mb-6 text-center text-deep-green tracking-tight">
-            Book your spot
+            {t('pricing.title')}
           </h2>
           <p className="text-lg sm:text-xl md:text-2xl text-gray-700 text-center mb-10 sm:mb-12 md:mb-16 lg:mb-20 font-body">
-            Join us in Itamambuca — time is running out. Limited to 15 women.
+            {t('pricing.subtitle')}
           </p>
         </FadeIn>
 
@@ -42,17 +35,17 @@ export default function PricingSection() {
                 {/* Left Column: Title, Price, Description */}
                 <div className="flex flex-col">
                   <h3 className="text-xl sm:text-2xl md:text-3xl font-serif font-bold mb-3 sm:mb-4 text-deep-green">
-                    Yamuna Retreat Rate
+                    {t('pricing.cardTitle')}
                   </h3>
                   
                   {/* Price with gold styling */}
                   <p className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4 text-gold">
-                    R$ 2.500 per person
+                    {t('pricing.price')}
                   </p>
                   
                   {/* Description */}
                   <p className="text-gray-700 font-body leading-relaxed text-sm sm:text-base md:text-lg">
-                    A single flat rate for your full Yamuna Retreats experience, including lodging, meals, all sessions, and retreat materials.
+                    {t('pricing.description')}
                   </p>
                 </div>
 
@@ -89,7 +82,7 @@ export default function PricingSection() {
                 rel="noopener noreferrer"
                 className="inline-flex w-full items-center justify-center px-8 py-4 sm:py-3.5 rounded-full bg-deep-green text-white font-semibold text-base sm:text-sm md:text-base hover:bg-deep-green/90 hover:scale-105 transition-all duration-300 shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-deep-green focus:ring-offset-2 min-h-[48px] sm:min-h-[44px]"
               >
-                Reserve Your Spot
+                {t('pricing.cta')}
               </a>
             </div>
           </FadeIn>
@@ -98,7 +91,7 @@ export default function PricingSection() {
         {/* Bottom text */}
         <FadeIn delay={200}>
           <p className="text-center text-gray-600 font-body text-base sm:text-lg md:text-xl">
-            Your spot includes lodging, meals, all sessions, and retreat materials.
+            {t('pricing.bottom')}
           </p>
         </FadeIn>
       </div>

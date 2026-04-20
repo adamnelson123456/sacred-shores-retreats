@@ -3,8 +3,10 @@
  */
 import { Link } from 'react-router-dom'
 import FadeIn from './FadeIn'
+import { useLanguage } from '../i18n/LanguageContext'
 
 export default function Hero() {
+  const { t } = useLanguage()
   return (
     <section className="relative min-h-[100dvh] overflow-hidden">
       <div
@@ -20,16 +22,16 @@ export default function Hero() {
         <div className="w-full max-w-4xl mx-auto">
           <FadeIn delay={80}>
             <h1 className="font-display text-white text-[clamp(1.15rem,3.2vw,2.25rem)] sm:text-3xl md:text-4xl lg:text-[2.65rem] font-semibold tracking-[0.16em] uppercase leading-snug mb-8 sm:mb-10 drop-shadow-[0_2px_28px_rgba(0,0,0,0.5)]">
-              Itamambuca Retreat
+              {t('retreat.heroTitle')}
             </h1>
           </FadeIn>
           <FadeIn delay={160}>
             <p className="flex flex-wrap items-baseline justify-center gap-x-2 sm:gap-x-3 gap-y-1 text-base sm:text-lg md:text-xl text-white drop-shadow-[0_2px_20px_rgba(0,0,0,0.55)] mb-10 sm:mb-12">
               <span className="font-serif italic font-normal tracking-wide text-white">
-                Jungle, ocean &amp; Ayurvedic rhythm for
+                {t('retreat.heroLineA')}
               </span>
               <span className="font-script text-white text-[2.35rem] sm:text-[2.65rem] md:text-5xl lg:text-6xl leading-none pl-0.5 max-w-[min(100%,20rem)] sm:max-w-none text-center drop-shadow-[0_2px_24px_rgba(0,0,0,0.55)]">
-                presence &amp; depth
+                {t('retreat.heroLineB')}
               </span>
             </p>
           </FadeIn>
@@ -53,13 +55,13 @@ export default function Hero() {
                 to="/retreat#pricing"
                 className="inline-flex items-center justify-center min-w-[200px] px-8 py-3.5 bg-white/95 text-deep-green text-[10px] sm:text-xs font-sans font-semibold uppercase tracking-[0.22em] hover:bg-white transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-deep-green min-h-[48px]"
               >
-                Reserve your spot
+                {t('retreat.heroCtaPrimary')}
               </Link>
               <Link
                 to="/retreat#retreat-flow"
                 className="inline-flex items-center justify-center min-w-[200px] px-8 py-3.5 border border-white/45 text-white text-[10px] sm:text-xs font-sans font-semibold uppercase tracking-[0.22em] hover:bg-white/10 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-transparent min-h-[48px]"
               >
-                Daily rhythm
+                {t('retreat.heroCtaSecondary')}
               </Link>
             </div>
           </FadeIn>

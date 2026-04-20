@@ -5,6 +5,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import FadeIn from '../components/FadeIn'
+import { useLanguage } from '../i18n/LanguageContext'
 import {
   HOME_HERO_STATIC_SRC,
   HOME_HERO_VIDEO_MOBILE_SRC,
@@ -18,6 +19,7 @@ import RetreatRhythmSection from '../components/RetreatRhythmSection'
 import HostsSection from '../components/HostsSection'
 export default function HomePage() {
   const { hash, pathname } = useLocation()
+  const { t } = useLanguage()
   const heroVideoRef = useRef(null)
   const [reduceMotion, setReduceMotion] = useState(false)
   const [heroVideoFailed, setHeroVideoFailed] = useState(false)
@@ -165,14 +167,14 @@ export default function HomePage() {
           <div className="w-full max-w-5xl mx-auto">
             <FadeIn>
               <h1 className="font-display text-white text-[clamp(1.35rem,4vw,2.75rem)] sm:text-4xl md:text-5xl lg:text-[3.25rem] font-semibold tracking-[0.18em] uppercase leading-snug mb-8 sm:mb-10 drop-shadow-[0_2px_32px_rgba(0,0,0,0.45)]">
-                Yamuna Retreats
+                {t('home.headline')}
               </h1>
             </FadeIn>
             <FadeIn delay={120}>
               <p className="flex flex-wrap items-baseline justify-center gap-x-3 gap-y-1 text-lg sm:text-xl md:text-2xl text-white/95 drop-shadow-md">
-                <span className="font-serif italic font-normal tracking-wide">Ancient wisdom for the</span>
+                <span className="font-serif italic font-normal tracking-wide">{t('home.subA')}</span>
                 <span className="font-sans font-light text-[1.65rem] sm:text-3xl md:text-4xl lg:text-5xl tracking-[0.06em] text-white drop-shadow-[0_1px_12px_rgba(0,0,0,0.5)] leading-none pl-1">
-                  modern soul
+                  {t('home.subB')}
                 </span>
               </p>
             </FadeIn>
@@ -181,7 +183,7 @@ export default function HomePage() {
                 to="/retreat"
                 className="inline-flex items-center justify-center mt-12 sm:mt-14 px-8 py-3 border border-white/40 !text-white visited:!text-white text-[10px] sm:text-xs font-sans font-semibold uppercase tracking-[0.28em] hover:bg-white/10 hover:border-white/70 transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-transparent min-h-[44px]"
               >
-                Enter the retreat
+                {t('home.cta')}
               </Link>
             </FadeIn>
           </div>

@@ -10,11 +10,13 @@ import { useMerchCurrency } from '../context/MerchCurrencyContext'
 import { useMerchCart } from '../context/MerchCartContext'
 import { getMerchBySlug } from '../data/merchProducts'
 import { formatMerchPriceFromBrl } from '../utils/merchPricing'
+import { useLanguage } from '../i18n/LanguageContext'
 
 export default function MerchProductPage() {
   const { currency } = useMerchCurrency()
   const { addToCart } = useMerchCart()
   const navigate = useNavigate()
+  const { t } = useLanguage()
   const { slug } = useParams()
   const [quantity, setQuantity] = useState(1)
   const product = slug ? getMerchBySlug(slug) : undefined
@@ -33,7 +35,7 @@ export default function MerchProductPage() {
         <FadeIn>
           <nav className="mb-8 flex flex-wrap items-center gap-x-2 gap-y-1 font-sans text-[11px] font-medium uppercase tracking-[0.22em] text-gray-500">
             <Link to="/shop" className="text-terracotta transition hover:text-deep-green">
-              Shop
+              {t('shop.title')}
             </Link>
             <span className="mx-2 text-gray-400" aria-hidden>
               /
@@ -104,7 +106,7 @@ export default function MerchProductPage() {
               <div className="mt-10 flex flex-col gap-4">
                 <div className="flex w-full min-w-0 flex-col gap-4 sm:flex-row sm:flex-wrap sm:items-end">
                   <label className="flex w-full max-w-[8rem] flex-col gap-1 font-sans text-[9px] font-semibold uppercase tracking-[0.14em] text-gray-600 sm:w-fit sm:max-w-none">
-                    Quantity
+                    {t('shop.qty')}
                     <input
                       type="number"
                       inputMode="numeric"
@@ -127,14 +129,14 @@ export default function MerchProductPage() {
                     }}
                     className="inline-flex min-h-[48px] flex-1 items-center justify-center rounded-full border-2 border-deep-green bg-deep-green px-8 py-3 font-sans text-[11px] font-semibold uppercase tracking-[0.2em] text-white transition hover:bg-deep-green/90 focus:outline-none focus-visible:ring-2 focus-visible:ring-deep-green focus-visible:ring-offset-2 sm:min-w-[12rem]"
                   >
-                    Add to cart
+                    {t('shop.addToCart')}
                   </button>
                 </div>
                 <Link
                   to="/shop"
                   className="inline-flex min-h-[48px] items-center justify-center rounded-full border-2 border-deep-green/35 bg-transparent px-8 py-3 font-sans text-[11px] font-semibold uppercase tracking-[0.2em] text-deep-green transition hover:bg-deep-green/[0.06] focus:outline-none focus-visible:ring-2 focus-visible:ring-deep-green focus-visible:ring-offset-2 sm:w-fit"
                 >
-                  Back to collection
+                  {t('shop.backToCollection')}
                 </Link>
               </div>
             </FadeIn>

@@ -11,6 +11,7 @@ import MerchCartPage from './pages/MerchCartPage'
 import MerchLayout from './pages/MerchLayout'
 import MerchPage from './pages/MerchPage'
 import MerchProductPage from './pages/MerchProductPage'
+import { LanguageProvider } from './i18n/LanguageContext'
 
 function App() {
   useEffect(() => {
@@ -38,62 +39,63 @@ function App() {
   }, [])
 
   return (
-    <BrowserRouter>
-      <div className="scroll-smooth min-h-[100dvh] min-h-[100svh] overflow-x-clip">
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <>
-                <Navbar />
-                <HomePage />
-                <Footer />
-              </>
-            }
-          />
-          <Route
-            path="/retreat"
-            element={
-              <>
-                <Navbar />
-                <RetreatPage />
-                <Footer />
-              </>
-            }
-          />
-          <Route
-            path="/learn-more"
-            element={
-              <>
-                <Navbar />
-                <RetreatDetailsPage />
-                <Footer />
-              </>
-            }
-          />
-          <Route
-            path="/wellness"
-            element={
-              <>
-                <Navbar />
-                <WellnessPage />
-                <Footer />
-              </>
-            }
-          />
-          {/* Shop: URL-only (no nav link) — yamunaretreats.com/shop */}
-          <Route path="/shop" element={<MerchLayout />}>
-            <Route index element={<MerchPage />} />
-            <Route path="cart" element={<MerchCartPage />} />
-            <Route path=":slug" element={<MerchProductPage />} />
-          </Route>
-          <Route path="/store" element={<MerchLegacyRedirect />} />
-          <Route path="/store/*" element={<MerchLegacyRedirect />} />
-          <Route path="/merch" element={<MerchLegacyRedirect />} />
-          <Route path="/merch/*" element={<MerchLegacyRedirect />} />
-        </Routes>
-      </div>
-    </BrowserRouter>
+    <LanguageProvider>
+      <BrowserRouter>
+        <div className="scroll-smooth min-h-[100dvh] min-h-[100svh] overflow-x-clip">
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <>
+                  <Navbar />
+                  <HomePage />
+                  <Footer />
+                </>
+              }
+            />
+            <Route
+              path="/retreat"
+              element={
+                <>
+                  <Navbar />
+                  <RetreatPage />
+                  <Footer />
+                </>
+              }
+            />
+            <Route
+              path="/learn-more"
+              element={
+                <>
+                  <Navbar />
+                  <RetreatDetailsPage />
+                  <Footer />
+                </>
+              }
+            />
+            <Route
+              path="/wellness"
+              element={
+                <>
+                  <Navbar />
+                  <WellnessPage />
+                  <Footer />
+                </>
+              }
+            />
+            <Route path="/shop" element={<MerchLayout />}>
+              <Route index element={<MerchPage />} />
+              <Route path="cart" element={<MerchCartPage />} />
+              <Route path=":slug" element={<MerchProductPage />} />
+            </Route>
+            <Route path="/store" element={<MerchLegacyRedirect />} />
+            <Route path="/store/*" element={<MerchLegacyRedirect />} />
+            <Route path="/merch" element={<MerchLegacyRedirect />} />
+            <Route path="/merch/*" element={<MerchLegacyRedirect />} />
+          </Routes>
+        </div>
+      </BrowserRouter>
+    </LanguageProvider>
   )
 }
 

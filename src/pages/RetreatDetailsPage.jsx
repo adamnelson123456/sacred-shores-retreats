@@ -4,6 +4,7 @@
  */
 import { useEffect } from 'react'
 import FadeIn from '../components/FadeIn'
+import { useLanguage } from '../i18n/LanguageContext'
 
 /** Replace with your own files under /public/images/ … */
 const GIO_PORTRAIT = encodeURI('/images/gio nature!.jpeg')
@@ -25,6 +26,7 @@ const PHOTOS = {
 }
 
 export default function RetreatDetailsPage() {
+  const { t } = useLanguage()
   useEffect(() => {
     const handleAnchorClick = (e) => {
       const href = e.target.getAttribute('href')
@@ -64,20 +66,19 @@ export default function RetreatDetailsPage() {
             <FadeIn>
               <p className="mb-5 flex flex-wrap items-center justify-center gap-3 font-sans text-[11px] font-semibold uppercase tracking-[0.35em] text-terracotta sm:justify-start sm:text-xs">
                 <span className="h-px w-10 bg-hero-gold/80 sm:w-14" aria-hidden />
-                Origins
+                {t('about.originsKicker')}
               </p>
               <h1 className="text-center font-serif text-[clamp(2.15rem,5.5vw,3.85rem)] font-bold leading-[1.06] tracking-tight text-deep-green sm:text-left">
-                How Giovanna began Yamuna Retreats
+                {t('about.heroTitle')}
               </h1>
               <p className="mx-auto mt-8 max-w-xl text-center font-body text-lg leading-[1.75] text-gray-600 sm:mx-0 sm:text-left sm:text-xl">
-                This page is not a brochure—it is the thread of how one practice deepened into a name, a shoreline, and
-                a way of holding others with care.
+                {t('about.heroBody')}
               </p>
               <a
                 href="#thread"
                 className="mt-10 flex min-h-[44px] items-center justify-center gap-2 font-sans text-sm font-semibold uppercase tracking-[0.14em] text-deep-green transition hover:text-terracotta-dark sm:justify-start"
               >
-                Read the story
+                {t('about.readStory')}
                 <span className="text-lg leading-none" aria-hidden>
                   ↓
                 </span>
@@ -88,14 +89,14 @@ export default function RetreatDetailsPage() {
             <figure className="mx-auto max-w-md overflow-hidden rounded-[1.75rem] shadow-[0_28px_60px_-14px_rgba(15,49,35,0.28)] ring-1 ring-deep-green/[0.08] sm:max-w-none lg:mx-0">
               <img
                 src={PHOTOS.portrait}
-                alt="Giovanna in nature — founder of Yamuna Retreats"
+                alt={t('about.portraitAlt')}
                 className="aspect-[4/5] w-full object-cover object-center sm:aspect-[3/4]"
                 width={900}
                 height={1125}
                 decoding="async"
               />
               <figcaption className="border-t border-deep-green/[0.08] bg-white/95 px-5 py-3.5 text-center font-sans text-[11px] uppercase tracking-[0.18em] text-gray-600 sm:text-xs">
-                Giovanna — founder, Yamuna Retreats
+                {t('about.portraitCaption')}
               </figcaption>
             </figure>
           </FadeIn>
@@ -111,10 +112,10 @@ export default function RetreatDetailsPage() {
           <FadeIn>
             <p className="mb-4 flex items-center justify-center gap-3 font-sans text-[11px] font-semibold uppercase tracking-[0.28em] text-gold sm:justify-start">
               <span className="h-px w-8 bg-hero-gold/70" aria-hidden />
-              The thread
+              {t('about.threadKicker')}
             </p>
             <h2 className="text-center font-serif text-3xl font-bold tracking-tight text-deep-green sm:text-left sm:text-4xl md:text-[2.35rem]">
-              Before the name
+              {t('about.threadTitle')}
             </h2>
             <div className="mt-10 space-y-7 font-body text-base leading-[1.75] text-gray-700 sm:text-lg">
               <p className="border-l-2 border-hero-gold/45 pl-6 sm:pl-8">

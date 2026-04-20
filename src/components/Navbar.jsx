@@ -4,6 +4,7 @@
 import { useState, useEffect, useRef } from 'react'
 import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom'
 import { YAMUNA_LOGO_SRC } from '../constants/brand'
+import { useLanguage } from '../i18n/LanguageContext'
 
 const RETREAT_TOP_PATH = '/retreat'
 
@@ -49,6 +50,7 @@ const solidAnchor =
 function RetreatsDropdown({ light, open, onOpenChange, onItamambucaClick }) {
   const ref = useRef(null)
   const { pathname } = useLocation()
+  const { t } = useLanguage()
   const onRetreatRoute = pathname === '/retreat'
 
   useEffect(() => {
@@ -98,7 +100,7 @@ function RetreatsDropdown({ light, open, onOpenChange, onItamambucaClick }) {
         aria-controls="nav-retreats-menu"
         onClick={() => onOpenChange(!open)}
       >
-        Retreats
+        {t('nav.retreats')}
       </button>
       {open && (
         <div id="nav-retreats-menu" role="menu" aria-labelledby="nav-retreats-trigger" className={panelBase}>
@@ -124,6 +126,7 @@ function RetreatsDropdown({ light, open, onOpenChange, onItamambucaClick }) {
 export default function Navbar() {
   const { pathname, hash } = useLocation()
   const navigate = useNavigate()
+  const { lang, toggleLang, t } = useLanguage()
   const [scrolled, setScrolled] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [retreatDropdownOpen, setRetreatDropdownOpen] = useState(false)
@@ -223,7 +226,7 @@ export default function Navbar() {
                 ? 'text-white focus-visible:ring-white focus-visible:ring-offset-transparent'
                 : 'text-nav-ink focus-visible:ring-terracotta focus-visible:ring-offset-nav-bg'
             }`}
-            aria-label="Toggle menu"
+            aria-label={t('nav.toggleMenu')}
             aria-expanded={mobileMenuOpen}
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -251,10 +254,13 @@ export default function Navbar() {
                 onItamambucaClick={handleItamambucaClick}
               />
               <NavLink to="/wellness" className={overlayNavLink}>
-                Wellness
+                {t('nav.wellness')}
               </NavLink>
               <NavLink to="/learn-more" className={overlayNavLink}>
-                About
+                {t('nav.about')}
+              </NavLink>
+              <NavLink to="/shop" className={overlayNavLink}>
+                {t('nav.shop')}
               </NavLink>
             </>
           ) : (
@@ -266,16 +272,31 @@ export default function Navbar() {
                 onItamambucaClick={handleItamambucaClick}
               />
               <NavLink to="/wellness" className={solidLink}>
-                Wellness
+                {t('nav.wellness')}
               </NavLink>
               <NavLink to="/learn-more" className={solidLink}>
-                About
+                {t('nav.about')}
+              </NavLink>
+              <NavLink to="/shop" className={solidLink}>
+                {t('nav.shop')}
               </NavLink>
             </>
           )}
         </div>
 
         <div className="relative z-10 flex items-center justify-end justify-self-end gap-1 sm:gap-2">
+          <button
+            type="button"
+            onClick={toggleLang}
+            className={`min-h-[44px] px-3 rounded-full border text-[10px] font-sans font-semibold uppercase tracking-[0.18em] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 ${
+              light
+                ? 'border-white/35 text-white hover:bg-white/10 focus-visible:ring-white focus-visible:ring-offset-transparent'
+                : 'border-black/[0.12] text-nav-ink hover:bg-black/[0.05] focus-visible:ring-terracotta focus-visible:ring-offset-nav-bg'
+            }`}
+            aria-label={t('nav.toggleLanguage')}
+          >
+            {lang === 'pt' ? 'PT' : 'EN'}
+          </button>
           <Link
             to="/retreat#pricing"
             className={`p-2.5 rounded-full transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 min-w-[44px] min-h-[44px] flex items-center justify-center ${
@@ -283,7 +304,7 @@ export default function Navbar() {
                 ? 'text-white hover:bg-white/10 focus-visible:ring-white focus-visible:ring-offset-transparent'
                 : 'text-nav-ink hover:bg-black/[0.05] focus-visible:ring-terracotta focus-visible:ring-offset-nav-bg'
             }`}
-            aria-label="View dates and pricing"
+            aria-label={t('nav.datesAndPricing')}
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={1.35} viewBox="0 0 24 24">
               <path
@@ -300,7 +321,7 @@ export default function Navbar() {
                 ? 'text-white hover:bg-white/10 focus-visible:ring-white focus-visible:ring-offset-transparent'
                 : 'text-nav-ink hover:bg-black/[0.05] focus-visible:ring-terracotta focus-visible:ring-offset-nav-bg'
             }`}
-            aria-label="Search"
+            aria-label={t('nav.search')}
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={1.35} viewBox="0 0 24 24">
               <path
@@ -329,7 +350,7 @@ export default function Navbar() {
               aria-expanded={mobileRetreatOpen}
               aria-controls="mobile-retreat-subnav"
             >
-              Retreats
+              {t('nav.retreats')}
             </button>
             {mobileRetreatOpen && (
               <div id="mobile-retreat-subnav" className="pb-1 pl-2">
@@ -363,7 +384,7 @@ export default function Navbar() {
               }`
             }
           >
-            Wellness
+            {t('nav.wellness')}
           </NavLink>
           <NavLink
             to="/learn-more"
@@ -380,8 +401,38 @@ export default function Navbar() {
               }`
             }
           >
-            About
+            {t('nav.about')}
           </NavLink>
+          <NavLink
+            to="/shop"
+            onClick={() => setMobileMenuOpen(false)}
+            className={({ isActive }) =>
+              `block px-3 py-3 rounded-lg font-sans text-sm uppercase tracking-wider ${
+                light
+                  ? isActive
+                    ? 'bg-white/15 text-white'
+                    : 'text-white/90'
+                  : isActive
+                    ? 'bg-white shadow-sm text-deep-green'
+                    : 'text-nav-ink'
+              }`
+            }
+          >
+            {t('nav.shop')}
+          </NavLink>
+          <button
+            type="button"
+            onClick={() => {
+              toggleLang()
+              setMobileMenuOpen(false)
+            }}
+            className={`block w-full px-3 py-3 rounded-lg font-sans text-sm uppercase tracking-wider text-left ${
+              light ? 'text-white/90 hover:bg-white/10' : 'text-nav-ink hover:bg-black/[0.04]'
+            }`}
+            aria-label={t('nav.toggleLanguage')}
+          >
+            {lang === 'pt' ? 'English' : 'Português'}
+          </button>
         </div>
       )}
     </nav>

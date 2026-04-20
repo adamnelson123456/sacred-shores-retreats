@@ -9,9 +9,11 @@ import MerchImageCarousel from '../components/MerchImageCarousel'
 import { useMerchCurrency } from '../context/MerchCurrencyContext'
 import { merchProducts } from '../data/merchProducts'
 import { formatMerchPriceFromBrl } from '../utils/merchPricing'
+import { useLanguage } from '../i18n/LanguageContext'
 
 export default function MerchPage() {
   const { currency } = useMerchCurrency()
+  const { t } = useLanguage()
   return (
     <article className="min-w-0 bg-[#FAF8F4] pb-[max(4rem,calc(4rem+env(safe-area-inset-bottom,0px)))] pt-20 text-gray-800 sm:pb-20 sm:pt-24">
       <section className="relative overflow-hidden border-b border-deep-green/[0.07]">
@@ -30,14 +32,14 @@ export default function MerchPage() {
               Yamuna Retreat
             </p>
             <h1 className="text-center font-serif text-[clamp(2rem,5.2vw,3.5rem)] font-bold leading-[1.08] tracking-tight text-deep-green sm:text-left">
-              Shop
+              {t('shop.title')}
             </h1>
             <p className="mx-auto mt-6 max-w-2xl text-center font-body text-base leading-[1.75] text-gray-600 sm:mx-0 sm:text-left sm:text-lg">
               Wearables and keepsakes that carry the retreat home — mug, tote, hoodie, and shirt. This page is a draft:
               pricing and availability will be confirmed before anything goes live.
             </p>
             <p className="mt-4 text-center font-sans text-xs font-medium uppercase tracking-[0.2em] text-gray-500 sm:text-left">
-              Draft preview · not listed in navigation
+              {t('shop.draft')}
             </p>
           </FadeIn>
         </div>
@@ -47,7 +49,7 @@ export default function MerchPage() {
         <FadeIn delay={80}>
           <div className="mb-10 flex w-full min-w-0 flex-col items-center gap-5 sm:mb-12 md:mx-auto md:max-w-4xl md:flex-row md:items-end md:justify-between">
             <h2 className="w-full min-w-0 text-center font-serif text-2xl font-bold text-deep-green sm:text-3xl md:w-auto md:text-left">
-              Collection
+              {t('shop.collection')}
             </h2>
             <div className="w-full min-w-0 overflow-x-auto overflow-y-visible [-webkit-overflow-scrolling:touch] pb-1 md:w-auto md:overflow-visible md:pb-0">
               <div className="flex min-w-0 justify-center md:justify-end">
@@ -84,7 +86,7 @@ export default function MerchPage() {
                     to={`/shop/${p.slug}`}
                     className="mt-4 inline-flex w-full min-h-[44px] items-center justify-center rounded-full border-2 border-deep-green bg-deep-green px-4 py-2.5 font-sans text-[10px] font-semibold uppercase tracking-[0.2em] text-white transition hover:bg-deep-green/90 focus:outline-none focus-visible:ring-2 focus-visible:ring-deep-green focus-visible:ring-offset-2 sm:text-[11px]"
                   >
-                    Shop now
+                    {t('shop.shopNow')}
                   </Link>
                 </div>
               </li>
@@ -103,7 +105,7 @@ export default function MerchPage() {
               to="/retreat"
               className="mt-8 inline-flex min-h-[48px] items-center justify-center rounded-full border-2 border-deep-green bg-deep-green px-8 py-3 font-sans text-[11px] font-semibold uppercase tracking-[0.2em] text-white transition hover:bg-deep-green/90 focus:outline-none focus-visible:ring-2 focus-visible:ring-deep-green focus-visible:ring-offset-2"
             >
-              Explore the retreat
+              {t('common.exploreRetreat')}
             </Link>
           </FadeIn>
         </div>

@@ -3,26 +3,11 @@
  * Pillars: horizontal 3-col from `md`, stacked on small screens.
  */
 import FadeIn from './FadeIn'
-
-const pillars = [
-  {
-    title: 'Rooted in depth, not surface',
-    body:
-      "You're naturally drawn to spirituality, self-discovery, and the deeper layers of life—while still valuing joy, beauty, and lightness along the way.",
-  },
-  {
-    title: 'Open to explore and evolve',
-    body:
-      "You're curious about practices like sound, breath, and Ayurveda, and open to new ways of healing, growing, and reconnecting with yourself.",
-  },
-  {
-    title: 'Seeking connection and community',
-    body:
-      'You value meaningful relationships, shared experiences, and being surrounded by people who are also choosing a more intentional way of living.',
-  },
-]
+import { useLanguage } from '../i18n/LanguageContext'
 
 export default function WhoItsForSection() {
+  const { t, get } = useLanguage()
+  const pillars = get('whoItsFor.pillars') || []
   return (
     <section
       id="who-its-for"
@@ -32,10 +17,10 @@ export default function WhoItsForSection() {
         <FadeIn>
           <header className="mx-auto mb-10 max-w-[min(40rem,100%)] text-center sm:mb-12 md:mb-14">
             <p className="mb-3 font-sans text-[11px] font-semibold uppercase tracking-[0.22em] text-gold sm:mb-4 sm:text-xs">
-              Who it&apos;s for
+              {t('whoItsFor.kicker')}
             </p>
             <h2 className="font-serif text-3xl leading-tight tracking-tight text-deep-green sm:text-4xl md:text-5xl">
-              For women who feel called to something deeper
+              {t('whoItsFor.title')}
             </h2>
           </header>
         </FadeIn>

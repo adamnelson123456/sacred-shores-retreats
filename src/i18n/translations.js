@@ -181,6 +181,44 @@ export const translations = {
       imageAlt: 'Surfista em uma onda iluminada — tempo de oceano opcional durante o retiro em Itamambuca',
       caption: 'Entre selva e oceano, algo começa a mudar.',
     },
+    itamambuca: {
+      kicker: 'ITAMAMBUCA · BRASIL',
+      title: 'ITAMAMBUCA',
+      lead:
+        'Areia macia, água clara e trilhas que saem da sombra da mata direto para o ar salgado — a costa faz parte do ensinamento.',
+      ctaPillars: 'Explorar os pilares',
+      ctaFlow: 'Ritmo do dia',
+      atAGlance: 'Itamambuca e Ubatuba — em um olhar',
+      facts: [
+        'Itamambuca é um bairro de praia dentro de Ubatuba — no verde norte do litoral paulista, onde a Mata Atlântica chega quase à linha da maré.',
+        'Ubatuba é conhecida por mais de cem praias e enseadas; o ritmo da cidade se curva às marés, à luz do nascer do sol e ao som do surf mais do que ao trânsito.',
+        'Aqui a Mata Atlântica encontra o ar salgado: floresta úmida, araras no alto e trilhas que podem te levar da sombra direto para a areia aberta.',
+        'A água ao longo desse trecho é famosa por ficar cristalina em dias calmos — ideal para longos mergulhos, sessões suaves de surf e para ver a cor mudar até o fim da tarde.',
+        'Da Grande São Paulo, Ubatuba fica a mais ou menos meio dia de estrada — longe o bastante para exalar, perto o suficiente para a semana ainda parecer possível.',
+        'Itamambuca mantém escala de vila: pousadas pequenas, cozinhas locais e horizontes longos — menos “resort”, mais espaço para a paisagem continuar no comando.',
+      ],
+    },
+    whoItsFor: {
+      kicker: 'Para quem é',
+      title: 'Para mulheres que se sentem chamadas para algo mais profundo',
+      pillars: [
+        {
+          title: 'Enraizada em profundidade, não em superfície',
+          body:
+            'Você se sente naturalmente atraída por espiritualidade, autoconhecimento e pelas camadas mais profundas da vida — sem abrir mão de alegria, beleza e leveza no caminho.',
+        },
+        {
+          title: 'Aberta para explorar e evoluir',
+          body:
+            'Você tem curiosidade por práticas como som, respiração e Ayurveda, e está aberta a novas formas de curar, crescer e se reconectar consigo mesma.',
+        },
+        {
+          title: 'Buscando conexão e comunidade',
+          body:
+            'Você valoriza relações significativas, experiências compartilhadas e estar cercada de pessoas que também escolhem um jeito de viver mais intencional.',
+        },
+      ],
+    },
     principles: {
       kicker: 'Como trabalhamos',
       title: 'Princípios da Yamuna Retreats',
@@ -585,6 +623,44 @@ export const translations = {
       ctaB: 'Book your retreat',
       imageAlt: 'Surfer on a sunlit wave—optional ocean time during the Itamambuca retreat',
       caption: 'Between jungle and ocean, something begins to shift.',
+    },
+    itamambuca: {
+      kicker: 'ITAMAMBUCA · BRAZIL',
+      title: 'ITAMAMBUCA',
+      lead:
+        'Soft sand, clear water, and trails that slip from forest shade straight into salt air—the shoreline does part of the teaching.',
+      ctaPillars: 'Explore the pillars',
+      ctaFlow: 'Daily flow',
+      atAGlance: 'Itamambuca & Ubatuba — at a glance',
+      facts: [
+        'Itamambuca is a beach neighborhood inside Ubatuba—on São Paulo’s lush north coast where the Atlantic Rainforest runs almost to the tide line.',
+        'Ubatuba is known for more than a hundred beaches and coves; the town’s pace bends toward tides, sunrise light, and the sound of surf more than traffic.',
+        'Here Mata Atlântica meets salt air: humid forest, scarlet macaws in the canopy, and trails that can drop you from shade straight onto open sand.',
+        'The water along this stretch is famously clear on calm days—ideal for long swims, gentle surf sessions, and simply watching the color shift toward evening.',
+        'From Greater São Paulo, Ubatuba is roughly a half-day’s journey by road—far enough to exhale, close enough that the week still feels possible.',
+        'Itamambuca keeps a village scale: small pousadas, local kitchens, and long horizons—less strip-resort, more room for the landscape to stay in charge.',
+      ],
+    },
+    whoItsFor: {
+      kicker: "Who it's for",
+      title: 'For women who feel called to something deeper',
+      pillars: [
+        {
+          title: 'Rooted in depth, not surface',
+          body:
+            "You're naturally drawn to spirituality, self-discovery, and the deeper layers of life—while still valuing joy, beauty, and lightness along the way.",
+        },
+        {
+          title: 'Open to explore and evolve',
+          body:
+            "You're curious about practices like sound, breath, and Ayurveda, and open to new ways of healing, growing, and reconnecting with yourself.",
+        },
+        {
+          title: 'Seeking connection and community',
+          body:
+            'You value meaningful relationships, shared experiences, and being surrounded by people who are also choosing a more intentional way of living.',
+        },
+      ],
     },
     principles: {
       kicker: 'How we work',

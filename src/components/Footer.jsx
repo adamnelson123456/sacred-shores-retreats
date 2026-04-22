@@ -3,7 +3,7 @@
  */
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { YAMUNA_LOGO_SRC } from '../constants/brand'
+import { YAMUNA_LOGO_SRC, YAMUNA_INSTAGRAM_URL } from '../constants/brand'
 import { useLanguage } from '../i18n/LanguageContext'
 
 function IconCircleMark({ className = 'w-5 h-5' }) {
@@ -76,7 +76,9 @@ export default function Footer() {
                 <IconCircleMark className="w-5 h-5" />
               </a>
               <a
-                href="#"
+                href={YAMUNA_INSTAGRAM_URL}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex min-h-[44px] min-w-[44px] items-center justify-center rounded-full hover:opacity-70 transition-opacity focus:outline-none focus:ring-2 focus:ring-terracotta focus:ring-offset-2 focus:ring-offset-[#E8E4DC]"
                 aria-label={t('footer.instagram')}
               >

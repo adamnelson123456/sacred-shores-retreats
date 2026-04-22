@@ -21,3 +21,6 @@ export const HOME_HERO_VIDEO_MOBILE_SRC =
 
 /** Shown behind the hero when video fails to load or is unavailable. */
 export const HOME_HERO_STATIC_SRC = encodeURI('/images/waves.jpg')
+
+/** Digits only (country + number) for `https://wa.me/…` — retreat pricing CTA. */
+export const RETREAT_BOOKING_WHATSAPP_DIGITS = '351935263546'

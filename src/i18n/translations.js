@@ -351,6 +351,8 @@ export const translations = {
         'Refeições plant-based, lanches e materiais do retiro',
       ],
       cta: 'Reservar minha vaga',
+      whatsappPrefill:
+        'Olá! Gostaria de reservar minha vaga no retiro Yamuna.',
       bottom: 'Sua vaga inclui hospedagem, refeições, todas as sessões e materiais do retiro.',
     },
     faq: {
@@ -794,6 +796,8 @@ export const translations = {
         'Plant-based meals, snacks & retreat materials',
       ],
       cta: 'Reserve Your Spot',
+      whatsappPrefill:
+        'Hello! I would like to reserve my spot for the Yamuna retreat.',
       bottom: 'Your spot includes lodging, meals, all sessions, and retreat materials.',
     },
     faq: {

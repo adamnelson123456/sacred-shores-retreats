@@ -4,10 +4,12 @@
  */
 import FadeIn from './FadeIn'
 import { useLanguage } from '../i18n/LanguageContext'
+import { RETREAT_BOOKING_WHATSAPP_DIGITS } from '../constants/brand'
 
 export default function PricingSection() {
   const { t, get } = useLanguage()
   const includedItems = get('pricing.included') || []
+  const whatsappHref = `https://wa.me/${RETREAT_BOOKING_WHATSAPP_DIGITS}?text=${encodeURIComponent(t('pricing.whatsappPrefill'))}`
 
   return (
     <section
@@ -77,7 +79,7 @@ export default function PricingSection() {
 
               {/* CTA Button: Full-width container below both columns - Mobile optimized touch target */}
               <a
-                href="https://docs.google.com/forms/d/e/1FAIpQLSf7gDgVadWn5xpplzOWDNtkytEn3nII6jnQPUFcEs6006GgIQ/viewform?usp=header"
+                href={whatsappHref}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex w-full items-center justify-center px-8 py-4 sm:py-3.5 rounded-full bg-deep-green text-white font-semibold text-base sm:text-sm md:text-base hover:bg-deep-green/90 hover:scale-105 transition-all duration-300 shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-deep-green focus:ring-offset-2 min-h-[48px] sm:min-h-[44px]"
